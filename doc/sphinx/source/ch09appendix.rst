@@ -303,35 +303,34 @@ Bucket visualizations
 
 This appendix is intended to give a visual impression of the bucket alignment
 and the accumulation process. Therefore each figure contains an orange number
-line, that indicates for each column the bit significance as a power of
-two and as a biased exponent representation according to the :term:`binary64`
-format. The accumulation buckets are visualized as 53 bit arrays, labelled
-*a*, with two white leading bits, a green accumulation reserve :math:`part_{1}`,
-two white *guard* bits, a red *shift* and finally a blue :math:`part_{3}`, see
-Chapter :ref:`sec-BucketSum`. Each bucket is aligned to the orange number
-line with a *shift* of 18 bits. For exceptional buckets in the over- and
-underflow-range the colors have the same meaning, as for "normal" buckets,
-only *Acc[113]* in Figure :ref:`fig-accumulation overflow` is initialized
-with *NaN* and thus colorless.
+line, that indicates for each column the bit significance as a power of two and
+as a biased exponent representation according to the :term:`binary64` format.
+The accumulation buckets are visualized as 53 bit arrays, labelled *a*, with two
+white leading bits, a green accumulation reserve :math:`part_{1}`, two white
+*guard* bits, a red *shift* and finally a blue :math:`part_{3}`, see Chapter
+:ref:`sec-BucketSum`. Each bucket is aligned to the orange number line with a
+*shift* of 18 bits. For exceptional buckets in the over- and underflow-range the
+colors have the same meaning, as for "normal" buckets, only *Acc[113]* in Figure
+:ref:`fig-accumulation overflow` is initialized with *NaN* and thus colorless.
 
-Figures :ref:`fig-accumulation underflow` and
-:ref:`fig-accumulation overflow` show how the utmost buckets differ
-from the "normal" ones in the inner exponent range. These figures are
-intended to help with understanding the limitations of BucketSum.
+Figures :ref:`fig-accumulation underflow` and :ref:`fig-accumulation overflow`
+show how the utmost buckets differ from the "normal" ones in the inner exponent
+range. These figures are intended to help with understanding the limitations of
+BucketSum.
 
-Figure :ref:`fig-accumulation stress test round nearest` shows
-the worst case summation example for the buckets *Acc[56]* and *Acc[54]*
-when using *roundToNearest*. The worst case addend here is :math:`2^{2} +
-2^{-32}`, which is exactly the tie value of this rounding mode and the only
-value, that results in an error of magnitude :math:`2^{-32}` in this case. This
-accumulation error of bucket *Acc[56]* is visualized as red 53 bit array
-and shows the necessity of the *guard* bits.
+Figure :ref:`fig-accumulation stress test round nearest` shows the worst case
+summation example for the buckets *Acc[56]* and *Acc[54]* when using
+*roundToNearest*. The worst case addend here is :math:`2^{2} + 2^{-32}`, which
+is exactly the tie value of this rounding mode and the only value, that results
+in an error of magnitude :math:`2^{-32}` in this case. This accumulation error
+of bucket *Acc[56]* is visualized as red 53 bit array and shows the necessity of
+the *guard* bits.
 
-Figure :ref:`fig-accumulation stress test round downwards` shows the
-same scenario for *roundTowardNegative* and its worst case addend :math:`2^{2}
-+ 2^{-31} - 2^{-50}`. The maximal possible error for this rounding mode is
-almost twice of that one from *roundToNearest*. The necessity of the
-*guard* bits becomes clear as well.
+Figure :ref:`fig-accumulation stress test round downwards` shows the same
+scenario for *roundTowardNegative* and its worst case addend :math:`2^{2} +
+2^{-31} - 2^{-50}`. The maximal possible error for this rounding mode is almost
+twice of that one from *roundToNearest*. The necessity of the *guard* bits
+becomes clear as well.
 
 \begin{figure} \includegraphics[width=\textwidth]{pic/accumulation_underflow}
 \caption{Visualization of the bucket alignment in the underflow range.}

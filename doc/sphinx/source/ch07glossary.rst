@@ -29,13 +29,13 @@ Glossary
       Floating-Point Unit
 
    GCC
-      GNU Compiler Collection
+      GNU Compiler Collection http://gcc.gnu.org
 
    GLIBC
-      GNU C Library
+      GNU C Library https://www.gnu.org/software/libc
 
-   libstdc++
-      GNU Standard C++ Library
+   LIBSTDC++
+      GNU Standard C++ Library http://gcc.gnu.org/libstdc++
 
    MXCSR
       Media eXtension Control and Status Register

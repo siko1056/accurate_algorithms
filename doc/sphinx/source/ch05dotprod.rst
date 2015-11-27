@@ -5,20 +5,20 @@ Accurate inner product
 **********************
 
 This chapter is the combination of all previous chapters. With the :term:`FMA`
-instruction and an efficient and fast summation algorithm, one is able to
-create efficient inner product algorithms as well. After a short overview
-about previous approaches, three algorithms using :term:`FMA` will be introduced.
+instruction and an efficient and fast summation algorithm, one is able to create
+efficient inner product algorithms as well. After a short overview about
+previous approaches, three algorithms using :term:`FMA` will be introduced.
 
 
 
 Previous work
 =============
 
-Like the Recursive summation (Algorithm :ref:`alg-RecursiveSummation`),
-there also exists a simple straight forward implementation of the
-inner product, namely Algorithm :ref:`alg-RecursiveDotProduct` (see
-\cite[Algorithm 6.2]{Muller2010}). A condition number for the inner product
-(Equation :eq:`eq-Dot product condition number`) is defined in \cite[Chapter
+Like the Recursive summation (Algorithm :ref:`alg-RecursiveSummation`), there
+also exists a simple straight forward implementation of the inner product,
+namely Algorithm :ref:`alg-RecursiveDotProduct` (see \cite[Algorithm
+6.2]{Muller2010}). A condition number for the inner product (Equation
+:eq:`eq-Dot product condition number`) is defined in \cite[Chapter
 6.1.2]{Muller2010} as well:
 
 .. math::
@@ -42,25 +42,24 @@ inner product, namely Algorithm :ref:`alg-RecursiveDotProduct` (see
      return s
    end function
 
-Similar to the definition of the error-free transformation for the sum,
-there also exists a definition for the product in \cite[Chapter 3]{Rump2005}:
+Similar to the definition of the error-free transformation for the sum, there
+also exists a definition for the product in \cite[Chapter 3]{Rump2005}:
 
 .. math::
    :label: eq-Error-free transformation product
 
    a \cdot b = x + y \quad\text{and}\quad x = fl(a \cdot b)
 
-This means the
-product is transformed into a sum. By knowing this, it becomes obvious why the
-task of finding an efficient inner product algorithm is strongly connected
-with the task of accurate summation. If the factors are floating-point
-numbers :math:`a, b \in \mathbb{F}`, then :math:`x, y \in \mathbb{F}` holds, like for the
-error-free transformation of the sum, too. :math:`x \in \mathbb{F}` follows from
-the definition in Equation :eq:`eq-Error-free transformation product`. An
-example for :math:`y \in \mathbb{F}` for the special case of :term:`binary64` is
-given in Equation :eq:`eq-Error-free transformation product example`. If
-*a* and *b* have the biggest possible significant (all bits set to "1"),
-then their product cannot exceed 106 bits. This fits exactly into two 53
+This means the product is transformed into a sum. By knowing this, it becomes
+obvious why the task of finding an efficient inner product algorithm is strongly
+connected with the task of accurate summation. If the factors are floating-point
+numbers :math:`a, b \in \mathbb{F}`, then :math:`x, y \in \mathbb{F}` holds,
+like for the error-free transformation of the sum, too. :math:`x \in \mathbb{F}`
+follows from the definition in Equation :eq:`eq-Error-free transformation
+product`. An example for :math:`y \in \mathbb{F}` for the special case of
+:term:`binary64` is given in Equation :eq:`eq-Error-free transformation product
+example`. If *a* and *b* have the biggest possible significant (all bits set to
+"1"), then their product cannot exceed 106 bits. This fits exactly into two 53
 bit precisions of a :term:`binary64`.
 
 .. math::
@@ -77,13 +76,13 @@ bit precisions of a :term:`binary64`.
      \cdot 2^{exp_{a} + exp_{b}} \nonumber
    \end{aligned}
 
-Without the :term:`FMA` instruction, there exists the algorithm
-*TwoProduct*, that is able to perform this error-free product
-transformation by using 17 :term:`FLOP` s (see \cite[Chapter 3]{Rump2005}
-for details). Having a system with a hardware implemented :term:`FMA`
-instruction, the whole effort can be reduced to *TwoProductFMA*
-(Algorithm :ref:`alg-TwoProductFMA`). This algorithm is also described in
-\cite[Algorithm 3.5]{Rump2005} and requires only two :term:`FLOP` s.
+Without the :term:`FMA` instruction, there exists the algorithm *TwoProduct*,
+that is able to perform this error-free product transformation by using 17
+:term:`FLOP` s (see \cite[Chapter 3]{Rump2005} for details). Having a system
+with a hardware implemented :term:`FMA` instruction, the whole effort can be
+reduced to *TwoProductFMA* (Algorithm :ref:`alg-TwoProductFMA`). This algorithm
+is also described in \cite[Algorithm 3.5]{Rump2005} and requires only two
+:term:`FLOP` s.
 
 .. code-block:: octave
    :caption: Error-free transformation TwoProductFMA
@@ -96,13 +95,13 @@ instruction, the whole effort can be reduced to *TwoProductFMA*
      return (x, y)
    end function
 
-For the inner product the idea of error-free transformation can
-also be extended from two to *N* operands with *Dot2* (Algorithm
-:ref:`alg-Dot2`). *Dot2* computes :math:`\sum_{i = 1}^{N} x_{i} \cdot y_{i}`
-as if twice the working precision was used \cite[Chapter 5]{Rump2005}. In
-that paper the idea has been extended to algorithm *DotK*, which can
-evaluate the inner product, as if computed with K-fold working precision. A
-slightly modified version of *Dot2* will be presented in the next chapter.
+For the inner product the idea of error-free transformation can also be extended
+from two to *N* operands with *Dot2* (Algorithm :ref:`alg-Dot2`). *Dot2*
+computes :math:`\sum_{i = 1}^{N} x_{i} \cdot y_{i}` as if twice the working
+precision was used \cite[Chapter 5]{Rump2005}. In that paper the idea has been
+extended to algorithm *DotK*, which can evaluate the inner product, as if
+computed with K-fold working precision. A slightly modified version of *Dot2*
+will be presented in the next chapter.
 
 .. code-block:: octave
    :caption: Inner product in twice the working precision Dot2
@@ -125,28 +124,28 @@ Algorithms based upon TwoProductFMA
 ===================================
 
 The first algorithm that is tested in the following benchmark (Chapter
-:ref:`sec-Benchmark DotProd`) is *Dot2* (Algorithm :ref:`alg-Dot2`) with
-all occurrences of *TwoProduct* replaced by *TwoProductFMA*. This
-algorithm will be called *Dot2FMA* in the following. This modification
-is already described in \cite[Chapter 5]{Rump2005}.
+:ref:`sec-Benchmark DotProd`) is *Dot2* (Algorithm :ref:`alg-Dot2`) with all
+occurrences of *TwoProduct* replaced by *TwoProductFMA*. This algorithm will be
+called *Dot2FMA* in the following. This modification is already described in
+\cite[Chapter 5]{Rump2005}.
 
-Another trivial idea is not to modify the existing summation algorithms
-of Chapter :ref:`ch-summation`. Instead a preprocessing
-of the input vectors is done with *TwoProductFMA* (Algorithm
-:ref:`alg-TwoProductFMA`). This approach will be called *FMAWrapperDotProd*
-and is described in Algorithm :ref:`alg-FMAWrapperDotProd` in combination with
-BucketSum. FMAWrapperDotProd has two major flaws. The first one is connected
-with the data preprocessing. The implementer has to decide whether the
-method should preserve the input vectors or not. In the first case the memory
-requirement increases by twice the size of the input vector length, in the
-latter case the original input vectors are lost. The second flaw is related to
-the usage of the summation algorithm in Algorithm :ref:`alg-FMAWrapperDotProd`
-lines 7-8. These lines create an intermediate rounding, that dependent on
-the resulting vectors can return a not correctly rounded result. A solution
-to this problem would be an interface method, that allows to accumulate
-a vector of a certain size, and a second one to make a final sum up to a
-correctly rounded sum. Such an interface is for example available in the
-implementation of *OnlineExactSum* \cite{Zhu:2010:A9O:1824801.1824815}.
+Another trivial idea is not to modify the existing summation algorithms of
+Chapter :ref:`ch-summation`. Instead a preprocessing of the input vectors is
+done with *TwoProductFMA* (Algorithm :ref:`alg-TwoProductFMA`). This approach
+will be called *FMAWrapperDotProd* and is described in Algorithm
+:ref:`alg-FMAWrapperDotProd` in combination with BucketSum. FMAWrapperDotProd
+has two major flaws. The first one is connected with the data preprocessing. The
+implementer has to decide whether the method should preserve the input vectors
+or not. In the first case the memory requirement increases by twice the size of
+the input vector length, in the latter case the original input vectors are lost.
+The second flaw is related to the usage of the summation algorithm in Algorithm
+:ref:`alg-FMAWrapperDotProd` lines 7-8. These lines create an intermediate
+rounding, that dependent on the resulting vectors can return a not correctly
+rounded result. A solution to this problem would be an interface method, that
+allows to accumulate a vector of a certain size, and a second one to make a
+final sum up to a correctly rounded sum. Such an interface is for example
+available in the implementation of *OnlineExactSum*
+\cite{Zhu:2010:A9O:1824801.1824815}.
 
 .. code-block:: octave
    :caption: FMAWrapperDotProd
@@ -168,19 +167,17 @@ implementation of *OnlineExactSum* \cite{Zhu:2010:A9O:1824801.1824815}.
      return s
    end function
 
-Finally a modified version of *BucketSum* (Algorithm
-:ref:`alg-BucketSum`) is presented, namely *BucketDotProd*
-(Algorithm :ref:`alg-BucketDotProd`). *BucketDotProd* is identical to
-*BucketSum*, except for the lines 8-13, where *TwoProductFMA*
-comes into play. Assume the product to accumulate is $a \cdot b$, therefore
-$x = fl(a \cdot b)$ and $y = FMA(a, b, -a \cdot b)$. It was already shown,
-that if *x* has to be added to bucket *i* and its error to bucket *i - 2*,
-no significant bit is lost (`Theorem 1`_). In order
-to avoid the expensive three :term:`FLOP` s for the exponent extraction of
-*y*, one can make use of the *shift = 18* property for the :term:`binary64`
-realization. In that case *y* will always fall in the exponent range of
-bucket *i - 3*. According to `Theorem 1`_ the error of *y*
-has to be added to bucket *i - 5*.
+Finally a modified version of *BucketSum* (Algorithm :ref:`alg-BucketSum`) is
+presented, namely *BucketDotProd* (Algorithm :ref:`alg-BucketDotProd`).
+*BucketDotProd* is identical to *BucketSum*, except for the lines 8-13, where
+*TwoProductFMA* comes into play. Assume the product to accumulate is $a \cdot
+b$, therefore $x = fl(a \cdot b)$ and $y = FMA(a, b, -a \cdot b)$. It was
+already shown, that if *x* has to be added to bucket *i* and its error to bucket
+*i - 2*, no significant bit is lost (`Theorem 1`_). In order to avoid the
+expensive three :term:`FLOP` s for the exponent extraction of *y*, one can make
+use of the *shift = 18* property for the :term:`binary64` realization. In that
+case *y* will always fall in the exponent range of bucket *i - 3*. According to
+`Theorem 1`_ the error of *y* has to be added to bucket *i - 5*.
 
 \begin{figure} \centering
 \includegraphics[width=\textwidth]{pic/accumulation_bucket_dot_prod}
@@ -229,9 +226,9 @@ bucket dot prod} \end{figure}
    end function
 
 This chapter shows, that with moderate effort nearly each summation algorithm
-can be modified to handle the task of inner product computation as well. In
-the following numerical tests show the properties of these three algorithms
-in a benchmark program.
+can be modified to handle the task of inner product computation as well. In the
+following numerical tests show the properties of these three algorithms in a
+benchmark program.
 
 
 
@@ -242,10 +239,10 @@ Benchmark
 
 For the benchmark of inner product the five algorithms of Table
 :ref:`tbl-Comparison of inner product algorithms` are compared. All algorithms
-were implemented as part of this Master's Thesis. Only for the implementation
-of *Dot2* and *Dot2FMA* some sub-functions of \cite{Lathus2012}
-were used. Like for the summation benchmark the C-XSC toolbox has been used
-to verify the correctness of the computed inner products.
+were implemented as part of this Master's Thesis. Only for the implementation of
+*Dot2* and *Dot2FMA* some sub-functions of \cite{Lathus2012} were used. Like for
+the summation benchmark the C-XSC toolbox has been used to verify the
+correctness of the computed inner products.
 
 .. list-table:: Comparison of inner product algorithms for input data length *N*
    :header-rows: 1
@@ -277,91 +274,90 @@ to verify the correctness of the computed inner products.
      - :math:`\mathcal{O}(1)`
 
 The asterisk "*" in :ref:`tbl-Comparison of inner product algorithms` indicates
-the use of instruction-level parallelism.
-For the inner product benchmark four kinds of test data are used. **Data 1**
-are two random, positive floating-point vectors of length *N*, all with
-an exponent of :math:`2^{0}`. **Data 2** is well-conditioned like Data 1,
-but each of the two input vectors has a random distributed exponent range
-between :math:`2^{0}` and :math:`2^{400}`. **Data 3** is ill-conditioned with a random
-distributed exponent between :math:`2^{-400}` and :math:`2^{400}`. Finally
-**Data 4** is ill-conditioned, with a real inner product of exactly zero. The
-time measuring and the determination of the middle and large dimension
-data lengths happens in the same way as in Chapter :ref:`sec-Benchmark
-summation`. Especially the assumptions for the data length determination
-allows the creation of two arrays, without exceeding the available main memory.
+the use of instruction-level parallelism.  For the inner product benchmark four
+kinds of test data are used. **Data 1** are two random, positive floating-point
+vectors of length *N*, all with an exponent of :math:`2^{0}`. **Data 2** is
+well-conditioned like Data 1, but each of the two input vectors has a random
+distributed exponent range between :math:`2^{0}` and :math:`2^{400}`. **Data 3**
+is ill-conditioned with a random distributed exponent between :math:`2^{-400}`
+and :math:`2^{400}`. Finally **Data 4** is ill-conditioned, with a real inner
+product of exactly zero. The time measuring and the determination of the middle
+and large dimension data lengths happens in the same way as in Chapter
+:ref:`sec-Benchmark summation`. Especially the assumptions for the data length
+determination allows the creation of two arrays, without exceeding the available
+main memory.
 
-.. figure:: _static/result_inner_product_middle_dimension_data_1.svg
+.. figure:: _static/result_inner_product_middle_dimension_data_1.*
    :alt: Well-conditioned, equal exponent.
    :name: fig-DotProd Middle Data 1
    :align: center
 
    Well-conditioned, equal exponent.
 
-.. figure:: _static/result_inner_product_middle_dimension_data_2.svg
+.. figure:: _static/result_inner_product_middle_dimension_data_2.*
    :alt: Well-conditioned, large exponent range.
    :name: fig-DotProd Middle Data 2
    :align: center
 
    Well-conditioned, large exponent range.
 
-.. figure:: _static/result_inner_product_middle_dimension_data_3.svg
+.. figure:: _static/result_inner_product_middle_dimension_data_3.*
    :alt: Ill-conditioned, large exponent range.
    :name: fig-DotProd Middle Data 3
    :align: center
 
    Ill-conditioned, large exponent range.
 
-.. figure:: _static/result_inner_product_middle_dimension_data_4.svg
+.. figure:: _static/result_inner_product_middle_dimension_data_4.*
    :alt: Ill-conditioned, zero result.
    :name: fig-DotProd Middle Data 4
    :align: center
 
 
 
-.. figure:: _static/result_inner_product_large_dimension_data_1.svg
+.. figure:: _static/result_inner_product_large_dimension_data_1.*
    :alt: Well-conditioned, equal exponent.
    :name: fig-DotProd Large Data 1
    :align: center
 
    Well-conditioned, equal exponent.
 
-.. figure:: _static/result_inner_product_large_dimension_data_2.svg
+.. figure:: _static/result_inner_product_large_dimension_data_2.*
    :alt: Well-conditioned, large exponent range.
    :name: fig-DotProd Large Data 2
    :align: center
 
    Well-conditioned, large exponent range.
 
-.. figure:: _static/result_inner_product_large_dimension_data_3.svg
+.. figure:: _static/result_inner_product_large_dimension_data_3.*
    :alt: Ill-conditioned, large exponent range.
    :name: fig-DotProd Large Data 3
    :align: center
 
    Ill-conditioned, large exponent range.
 
-.. figure:: _static/result_inner_product_large_dimension_data_4.svg
+.. figure:: _static/result_inner_product_large_dimension_data_4.*
    :alt: Ill-conditioned, zero result.
    :name: fig-DotProd Large Data 4
    :align: center
 
    Ill-conditioned, zero result.
 
-The results of the inner product benchmark, shown in Figures above,
-verify a linear scaling
-of the algorithms in Table :ref:`tbl-Comparison of inner product algorithms` for
-data lengths in each, middle and large dimension. Another observation is, that
-the type of the data does not really affect the runtime of the algorithms. In
-any case *BucketDotProd* is the fastest algorithm and only by factor
-2-3 slower than the Recursive Inner Product. *FMAWrapperDotProd*,
-that only preprocesses the input vectors, is already by factor 4-6 slower
-than the Recursive Inner Product. The reason for this seems to be, that all
-input vectors have to be processed  completely twice. Another improvement is
-observable if *Dot2* is used in combination with *TwoProductFMA* in
-*Dot2FMA*. The execution time nearly halves, if a hardware implemented
-:term:`FMA` instruction is available on the system. The result accuracy is
-again checked by an *assert()*-statement against the result of the
-C-XSC toolbox, like it was done for the summation benchmark. Therefore the
-results of *BucketDotProd* are claimed to be correctly rounded. This
-check cannot be applied for *FMAWrapperDotProd*, because of the in the
-previous chapter discussed implementation drawback.
+The results of the inner product benchmark, shown in Figures above, verify a
+linear scaling of the algorithms in Table :ref:`tbl-Comparison of inner product
+algorithms` for data lengths in each, middle and large dimension. Another
+observation is, that the type of the data does not really affect the runtime of
+the algorithms. In any case *BucketDotProd* is the fastest algorithm and only by
+factor 2-3 slower than the Recursive Inner Product. *FMAWrapperDotProd*, that
+only preprocesses the input vectors, is already by factor 4-6 slower than the
+Recursive Inner Product. The reason for this seems to be, that all input vectors
+have to be processed  completely twice. Another improvement is observable if
+*Dot2* is used in combination with *TwoProductFMA* in *Dot2FMA*. The execution
+time nearly halves, if a hardware implemented :term:`FMA` instruction is
+available on the system. The result accuracy is again checked by an
+*assert()*-statement against the result of the C-XSC toolbox, like it was done
+for the summation benchmark. Therefore the results of *BucketDotProd* are
+claimed to be correctly rounded. This check cannot be applied for
+*FMAWrapperDotProd*, because of the in the previous chapter discussed
+implementation drawback.
 
