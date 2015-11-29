@@ -11,8 +11,8 @@ approaches, that should only be sketched in Chapter :ref:`sec-summation previous
 work`. The accurate computation of sums is not only the basis for the chapter
 about accurate inner products, it is also important for residual iterations,
 geometrical predicates, computer algebra, linear programming or multiple
-precision arithmetic in general, as it is motivated in \cite[Chapter
-1]{Rump2009}.
+precision arithmetic in general, as it is motivated in [Rump2009]_.
+
 
 
 .. _sec-summation previous work:
@@ -28,14 +28,14 @@ Presorting the addends
 ----------------------
 
 One of the easiest summation algorithms is the Recursive summation (Algorithm
-:ref:`alg-RecursiveSummation`). Higham describes in \cite[Chapter 4]{Higham2002}
+:ref:`alg-RecursiveSummation`). Higham describes in [Higham2002]_ (Chapter 4)
 that for this simple algorithm the order of the addends has a huge impact on the
 accuracy of the resulting sum. The problem with presorting the data is, that
 even fast sorting algorithms have a complexity of :math:`\mathcal{O}(n \log(n))`
 and in many applications there is no information about the addends in advance
-available. But the analysing techniques and results from \cite[Chapter
-4]{Higham2002} can be applied later for other algorithms. Additional tools for
-error analysis are given in \cite[Chapter 6.1.2]{Muller2010}. For the purpose of
+available. But the analyzing techniques and results from [Higham2002]_ (Chapter
+4) can be applied later for other algorithms. Additional tools for error
+analysis are given in [Brisebarre2010]_ (Chapter 6.1.2). For the purpose of
 error analysis Higham introduces a condition number :math:`R_{\text{summation}}`
 for the addends:
 
@@ -51,13 +51,12 @@ for the addends:
    :name: alg-RecursiveSummation
    :linenos:
 
-   function RecursiveSummation(data, N)
-     s = 0
-     for(i = 1 to N)
-       s = s + data[i]
-     end for
-     return s
-   end function
+   function [s] = RecursiveSummation(x, N)
+     s = x(1);
+     for i = 2:N
+       s = s + x(i);
+     end
+   end
 
 If all addends have the same sign, then :math:`R_{\text{summation}} = 1`. In
 this case an increasing ordering is suggested. When the numbers of largest
@@ -66,9 +65,9 @@ result, even if all small addends together would have a sufficient large
 magnitude to contribute to the final result as well. If the signs of the largest
 addends differ, then :math:`R_{\text{summation}} \rightarrow \infty` and heavy
 cancellation happens by computing :math:`\sum_{i = 1}^{N} x_{i}`. Such kind of
-summation data is called *ill-conditioned* analogue to \cite[Chapter
-4]{Higham2002} and has often the exact result zero. For this kind of addends
-Higham suggest a decreasing pre ordering.
+summation data is called *ill-conditioned* analogue to [Higham2002]_ (Chapter 4)
+and has often the exact result zero. For this kind of addends Higham suggest a
+decreasing pre ordering.
 
 
 
@@ -78,7 +77,7 @@ Error-free transformation and distillation
 The most basic error-free summation algorithms transform two input addends, e.g.
 *a* and *b*, into a floating-point sum *x* and a floating-point approximation
 error *y*. These algorithms are called *error-free transformations*
-\cite[Chapter 1.1]{Rump2005}, if the following is satisfied:
+[Ogita2005]_, if the following is satisfied:
 
 .. math::
    a + b = x + y \quad\text{and}\quad x = fl(a + b)
@@ -86,42 +85,40 @@ error *y*. These algorithms are called *error-free transformations*
 It is easy to see, that if :math:`a, b \in \mathbb{F}` is given, :math:`x, y \in
 \mathbb{F}` is valid too. The two most distinct instances fulfilling the
 error-free transformation property are *FastTwoSum* (Algorithm
-:ref:`alg-FastTwoSum`) by Dekker \cite[Page 2]{Rump2005} and *TwoSum* (Algorithm
-:ref:`alg-TwoSum`) by Knuth \cite[Page 7]{Rump2005}. *FastTwoSum* requires three
-and *TwoSum* six :term:`FLOP` s. *FastTwoSum* additionally requires :math:`\vert
+:ref:`alg-FastTwoSum`) by Dekker [Ogita2005]_ and *TwoSum* (Algorithm
+:ref:`alg-TwoSum`) by Knuth [Ogita2005]_. *FastTwoSum* requires three and
+*TwoSum* six :term:`FLOP` s. *FastTwoSum* additionally requires :math:`\vert
 a\vert \geq \vert b\vert` and thus unavoidably an expensive branch. So one has
 to check for the individual use case whether three additional :term:`FLOP` s
-exceed the cost of a branch \cite[Chapters 1 and 3]{Rump2005} \cite[Chapter
-4.3]{Muller2010}. There exists another algorithm by Priest, which will not be
-taken into account in this thesis. It requires :math:`\vert a\vert \geq \vert
-b\vert`, thus a branch, and more :term:`FLOP` s than the two already presented
-algorithms \cite[Chapter 4.3.3]{Muller2010}.
+exceed the cost of a branch, see [Ogita2005]_ and [Brisebarre2010]_ (Chapter
+4.3) . There exists another algorithm by Priest, which will not be taken into
+account in this thesis. It requires :math:`\vert a\vert \geq \vert b\vert`, thus
+a branch, and more :term:`FLOP` s than the two already presented algorithms
+[Brisebarre2010]_ (Chapter 4.3.3).
 
 .. code-block:: octave
    :caption: Error-free transformation FastTwoSum
    :name: alg-FastTwoSum
    :linenos:
 
-   function FastTwoSum(a, b)
-     x = fl(a + b)
-     y = fl(fl(a - x) + b)
-     return (x, y)
-   end function
+   function [x, y] = FastTwoSum (a, b)
+     x = fl(a + b);
+     y = fl(fl(a - x) + b);
+   end
 
 .. code-block:: octave
    :caption: Error-free transformation TwoSum
    :name: alg-TwoSum
    :linenos:
 
-   function TwoSum(a, b)
-     x = fl(a + b)
-     z = fl(x - a)
-     y = fl(fl(a - fl(x - z)) + fl(b - z))
-     return (x, y)
-   end function
+   function [x, y] = TwoSum (a, b)
+     x = fl(a + b);
+     z = fl(x - a);
+     y = fl(fl(a - fl(x - z)) + fl(b - z));
+   end
 
 The extension of error-free transformations from 2 to *N* addends is called
-*distillation* \cite[Chapter 1.1]{Rump2005}.
+*distillation* [Ogita2005]_.
 
 .. math::
    \displaystyle\sum_{i = 1}^{N} x_{i}^{(k)} =
@@ -131,7 +128,7 @@ Distillation means, that in each distillation step *k* the values of the *N*
 individual addends may change, but not their sum. The goal of distillation
 algorithms is, that after a finite number of steps, assume *k* steps,
 :math:`x_{n}^{(k)}` approximates :math:`\displaystyle\sum_{i = 1}^{n} x_{i}`
-\cite[Chapter 4.4]{Higham2002}. The Error-free transformation and distillation
+[Higham2002]_ (Chapter 4.4). The Error-free transformation and distillation
 properties are preliminaries for cascaded and compensated summation.
 
 
@@ -145,7 +142,7 @@ addends, it is called *cascaded summation*. When each new addend gets corrected
 by the previously computed error of *FastTwoSum* (like in line 5 Algorithm
 :ref:`alg-Kahans cascaded and compensated summation`), it is called *compensated
 summation*. The notation with explicit usage of *FastTwoSum* has been introduced
-in \cite[Algorithm 6.7]{Muller2010}. Algorithm :ref:`alg-Kahans cascaded and
+in [Brisebarre2010]_ (Algorithm 6.7). Algorithm :ref:`alg-Kahans cascaded and
 compensated summation` relies on sorted input data :math:`\vert x_{i}\vert \geq
 \vert x_{i + 1}\vert`, because of the internal usage of *FastTwoSum*.
 
@@ -154,19 +151,19 @@ compensated summation` relies on sorted input data :math:`\vert x_{i}\vert \geq
    :name: alg-Kahans cascaded and compensated summation
    :linenos:
 
-   \Require $x$ array of sorted addends \Require *N* number of addends in $x$
-   \Ensure $s$ computed sum
-   function KahansCompensatedSummation(x, N)
-     s = x_{1}
-     e = 0
-     \For{$i = 2$ to *N*}
-       \State $y \gets fl(x_{i} + e)$ \Comment compensation step
-       \State $(s,e) \gets FastTwoSum(s, y)$
-     end for
-     return s
-   end function
+   % x: array of sorted addends
+   % N: number of addends in x
+   % s: computed sum
+   function [s] = KahansCompensatedSummation (x, N)
+     s = x(1);
+     e = 0;
+     for i = 2:N
+       y = fl(x(i) + e); % compensation step
+       [s, e] = FastTwoSum (s, y);
+     end
+   end
 
-Rump, Ogita and Oishi present in \cite{Rump2005} another interesting algorithm,
+Rump, Ogita and Oishi present in [Ogita2005]_ another interesting algorithm,
 namely *SumK*, which repeats the distillation *k - 1* times, followed by a final
 recursive summation. The authors have shown that after the *(k - 1)*-th
 repetition of the cascaded summation, the result has improved, as if it has been
@@ -180,30 +177,30 @@ Long and cascaded accumulators
 A completely different approach is not to look for ways to cope with the errors
 of floating-point arithmetic, instead to change the precision on hardware level.
 Therefore Kulisch and Miranker proposed the usage of a long high-precision
-accumulator on hardware level \cite{Kulisch1986}. This approach has not been
-realized so far by common hardware vendors. In his book \cite[Chapter
-8]{Kulisch2013} Kulisch describes comprehensibly the realization of *Scalar
-product computation units (SPU)* for common 32 and 64 bit PC architectures or as
-coprocessors. Kulisch reports about two more or less successful attempts of
-coprocessor realizations, the most recent one with a Field Programmable Gate
-Array (FPGA) \cite[Chapter 8.9.3]{Kulisch2013}. The major issue is the time
-penalty of the much slower FPGA clock rates. But as there is much improvement on
-that field of research and with intelligent usage of parallelism, it might be
-possible to create a SPU, that is comparable to nowadays :term:`CPU`
-floating-point units. Nevertheless the idea of the long accumulator resulted in
-a C++ toolbox called C-XSC [#f1]_, that is currently maintained by the
-University of Wuppertal. The C-XSC toolbox has been developed for several years
-and is thoroughly tested, therefore its version 2.5.3 will be used as reference
-for checking the correctness of the computed results later in Chapter
-:ref:`sec-Benchmark summation`.
+accumulator on hardware level [Kulisch1986]_. This approach has not been
+realized so far by common hardware vendors. In his book Kulisch describes
+comprehensibly the realization of *Scalar product computation units (SPU)* for
+common 32 and 64 bit PC architectures or as coprocessors [Kulisch2013]_ (Chapter
+8). Kulisch reports about two more or less successful attempts of coprocessor
+realizations, the most recent one with a Field Programmable Gate Array (FPGA)
+[Kulisch2013]_ (Chapter 8.9.3). The major issue is the time penalty of the much
+slower FPGA clock rates. But as there is much improvement on that field of
+research and with intelligent usage of parallelism, it might be possible to
+create a SPU, that is comparable to nowadays :term:`CPU` floating-point units.
+Nevertheless the idea of the long accumulator resulted in a C++ toolbox called
+C-XSC [#f1]_, that is currently maintained by the University of Wuppertal. The
+C-XSC toolbox has been developed for several years and is thoroughly tested,
+therefore its version 2.5.3 will be used as reference for checking the
+correctness of the computed results later in Chapter :ref:`sec-Benchmark
+summation`.
 
-Another interesting approach came up in a paper by Malcom \cite{Malcolm1971},
-who caught up Wolfes idea of cascaded accumulators. Malcom modified this idea by
+Another interesting approach came up in a paper by Malcom [Malcolm1971]_, who
+caught up Wolfes idea of cascaded accumulators. Malcom modified this idea by
 splitting each addend in order to add each split part to an appropriate
 accumulator. Finally all accumulators are summed up in decreasing order of
 magnitude using ordinary recursive summation. This case was treated in Chapter
 :ref:`subsec-Presorting the addends` and results in a small relative error
-\cite[Chapter 4.4]{Higham2002}.
+[Higham2002]_ (Chapter 4.4).
 
 
 
@@ -211,23 +208,22 @@ Hybrid techniques
 -----------------
 
 Zhu and Hayes published the accurate summation algorithm *OnlineExactSum*
-\cite[Figure 1]{Zhu:2010:A9O:1824801.1824815}. This algorithm claims to be
-independent of the number of addends and the condition number (see Equation
-:eq:`eq-Summation condition number`) of the input. Furthermore the results of
-*OnlineExactSum* are correctly rounded. *OnlineExactSum* has a constant memory
-footprint, as it uses a fixed number of cascaded accumulators. Each addends
-exponent is examined for the choice of an appropriate accumulator and the
-accumulation is done by Dekkers error-free transformation algorithm
-*FastTwoSum*. In contrast to Malcoms approach, the final sum up of the cascaded
-accumulators is done by *iFastSum* \cite[Figure 2.2]{Zhu2009}, a destillation
-algorithm like *SumK*. In their paper \cite{Zhu:2010:A9O:1824801.1824815} Zhu
-and Hayes proof the correctness of their algorithm by showing, that no
-accumulator looses any significant digits, and by the correctly rounded result
-of *iFastSum* for the final sum up. With various run time test for several types
-of input data they verified the stable and predictable behavior of
-*OnlineExactSum*. With this survey on previous work, a new algorithm will be
-proposed in the following chapter. Many ideas for the proposed algorithm accrued
-from this previous work and are extended by this new approach.
+[Hayes2010]_. This algorithm claims to be independent of the number of addends
+and the condition number (see Equation :eq:`eq-Summation condition number`) of
+the input. Furthermore the results of *OnlineExactSum* are correctly rounded.
+*OnlineExactSum* has a constant memory footprint, as it uses a fixed number of
+cascaded accumulators. Each addends exponent is examined for the choice of an
+appropriate accumulator and the accumulation is done by Dekkers error-free
+transformation algorithm *FastTwoSum*. In contrast to Malcoms approach, the
+final sum up of the cascaded accumulators is done by *iFastSum* [Hayes2009]_, a
+distillation algorithm like *SumK*. In their paper [Hayes2010]_ Zhu and Hayes
+proof the correctness of their algorithm by showing, that no accumulator looses
+any significant digits, and by the correctly rounded result of *iFastSum* for
+the final sum up. With various run time test for several types of input data
+they verified the stable and predictable behavior of *OnlineExactSum*. With this
+survey on previous work, a new algorithm will be proposed in the following
+chapter. Many ideas for the proposed algorithm accrued from this previous work
+and are extended by this new approach.
 
 
 
@@ -249,77 +245,80 @@ explained comprehensively in this chapter:
 2. **Summing up buckets:** compute an accurate sum of the *M* buckets.
 
 This approach is already known from Zhu and Hayes algorithm *HybridSum*
-\cite[Algorithm 2]{Zhu2009} and from Malcolm \cite{Malcolm1971}. Instead of
-increasing the precision of the accumulators, the input data is split and stored
-in several shorter accumulators. So each :term:`binary64` number can be seen as
-an extended-precision accumulator for the reduced input data precision. Like in
-*HybridSum* \cite[Algorithm 2]{Zhu2009} an array of :term:`binary64` numbers is
-created, each for accumulating a certain part of the full :term:`binary64`
-exponent range. Each element of that array will be called "bucket" in this
-chapter. For getting an overall picture, the algorithms for the steps 1 and 2
-are presented first. The algorithm for step 2 is a slight modification of
-Kahan's cascaded and compensated summation (Algorithm :ref:`alg-Kahans cascaded
-and compensated summation`). The compensation step has been taken out of the
-for-loop to reduce the data dependency. In this modified version (Algorithm
-:ref:`alg-Modified Kahans cascaded and compensated summation`) all summation
-errors are accumulated inside the for-loop for the final compensation step.
-Additionally an initial value for the resulting sum has been introduced.
+[Hayes2009]_ and from Malcolm [Malcolm1971]_. Instead of increasing the
+precision of the accumulators, the input data is split and stored in several
+shorter accumulators. So each :term:`binary64` number can be seen as an
+extended-precision accumulator for the reduced input data precision. Like in
+*HybridSum* [Hayes2009]_ an array of :term:`binary64` numbers is created, each
+for accumulating a certain part of the full :term:`binary64` exponent range.
+Each element of that array will be called "bucket" in this chapter. For getting
+an overall picture, the algorithms for the steps 1 and 2 are presented first.
+The algorithm for step 2 is a slight modification of Kahan's cascaded and
+compensated summation (Algorithm :ref:`alg-Kahans cascaded and compensated
+summation`). The compensation step has been taken out of the for-loop to reduce
+the data dependency. In this modified version (Algorithm :ref:`alg-Modified
+Kahans cascaded and compensated summation`) all summation errors are accumulated
+inside the for-loop for the final compensation step.  Additionally an initial
+value for the resulting sum has been introduced.
 
 .. code-block:: octave
    :caption: Modified Kahan's cascaded and compensated summation
    :name: alg-Modified Kahans cascaded and compensated summation
    :linenos:
 
-   \Require $s$ initial sum value
-   \Require $x$ array of sorted addends
-   \Require *N* number of addends in $x$
-   \Ensure $s$ computed sum
-   function ModifiedKahanSum(s, x, N)
-     \State $err \gets 0$
-     \For{$i = 1$ to *N*}
-       \State $(s, e) \gets FastTwoSum(s, x_{i})$
-       \State $err \gets fl(err + e)$
-     end for
+   % s: initial sum value (input) / computed sum (output)
+   % x: array of sorted addends
+   % N: number of addends in x
+   function [s] = ModifiedKahanSum (s, x, N)
+     err = 0;
+     for i = 1:N
+       [s, e] = FastTwoSum (s, x(i));
+       err = fl(err + e);
+     end
      s = fl(s + err) % compensation step
-     return s
-   end function
+   end
 
 .. code-block:: octave
    :caption: BucketSum
    :name: alg-BucketSum
    :linenos:
 
-   \Require *N*, number of addends
-   \Require $x$, array of *N* floating-point addends
-   \Ensure $s$, correctly rounded sum $\sum_{i = 1}^{N} x_{i}$
-   function BucketSum(x, N)
-     % $a_{1}$ and $a_{2}$ are underflow and
-     % $a_{M - 1}$ and $a_{M}$ are overflow buckets
-     \State create arrays of *M* buckets $a$ \Comment{$a_{2 \dots M - 2}$ cover *shift* exponents}
-     \State create arrays of *M* bucket masks $mask$ \Comment{$mask_{1}$ is set to *0*, $mask_{M}$ to NaN}
-     \State initialize $a_{i}$ with $mask_{i}$
-     \State $sum \gets 0$
-     \For{$i=1$ to *N*}
-       \State $pos \gets \lceil exp(x_{i}) / SHIFT \rceil + 2$ \Comment{$exp()$ extracts biased exponent}
-       \State $(a_{pos}, e) \gets FastTwoSum(a_{pos}, x_{i})$
-       \State $a_{pos - 2} \gets fl(a_{pos - 2} + e)$
-       if{$(i \mod C1) == 0$} \Comment{$C1 =$ capacity of normal buckets}
-         for{$j=1$ to $M - 2$} \Comment{Tidy up normal buckets}
-           \State $r \gets fl(fl(mask_{j + 1} + fl(a_{j} - mask_{j})) - mask_{j + 1})$
-           \State $a_{j + 1} \gets fl(a_{j + 1} + r)$
-           \State $a_{j} \gets fl(a_{j} - r)$
-         end for
-       end if
-       if{$(i \mod C2) == 0$} \Comment{$C1 =$ capacity of overflow buckets}
-         \State $sum \gets fl(sum + fl(a_{M - 1} - mask_{M - 1}))$ \Comment{Tidy up overflow}
-         \State $a_{M - 1} \gets mask_{M - 1}$
-       end if
-     end for
-     for{$i=1$ to $M - 1$} \Comment{remove masks}
-       \State $a_{i} \gets a_{i} - mask_{i}$
-     end for
-     return $ModifiedKahanSum(sum, a_{M-1 \text{ downto } 1}, M-1)$
-   end function
+   % x: array of addends
+   % N: number of addends in x
+   % s: correctly rounded sum $\sum_{i = 1}^{N} x_{i}$
+   function [s] = BucketSum (x, N)
+     % Create appropiate masks
+     mask = CreateMasks (M);
+     mask(1) = 0;
+     mask(M) = NaN;
+
+     % Create array of M buckets, initialized with their mask.
+     %   a(1:2) are underflow and a((M - 1):M) are overflow buckets
+     %   a(3:(M - 2)) cover SHIFT exponents
+     a = mask;
+
+     sum = 0;
+     for i = 1:N
+       pos = ceil (exp(x(i)) / SHIFT) + 2;     % exp(): extracts biased exponent
+       [a(pos), e] = FastTwoSum (a(pos), x(i));
+       a(pos - 2) = fl(a(pos - 2) + e);
+       if (mod (i, C1) == 0)                    % C1: capacity of normal buckets
+         for j = 1:(M - 2)                              % Tidy up normal buckets
+           r = fl(fl(mask(j + 1) + fl(a(j) - mask(j))) - mask(j + 1));
+           a(j + 1) = fl(a(j + 1) + r);
+           a(j) = fl(a(j) - r);
+         end
+       end
+       if (mod (i, C2) == 0)                  % C2: capacity of overflow buckets
+         sum = fl(sum + fl(a(M - 1) - mask(M - 1)));          % Tidy up overflow
+         a(M - 1) = mask(M - 1);
+       end
+     end
+     for i = 1:(M - 1)                                            % Remove masks
+       a(i) = a(i) - mask(i);
+     end
+     s = ModifiedKahanSum (sum, a_{M-1 \text{ downto } 1}, M-1);
+   end
 
 *BucketSum* is responsible for step 1 and presented in Algorithm
 :ref:`alg-BucketSum`. What distinguishes *BucketSum* from *OnlineExactSum* is
@@ -345,19 +344,18 @@ consists of the following parts, that are determined in `Theorem 2`_:
   significant bits of an addend.
 
 Another characteristic of *BucketSum* is, that there is no fixed splitting of
-the input addends like in *HybridSum* (\cite[Algorithm 2]{Zhu2009}). The
-splitting is performed dynamically by *FastTwoSum* as one can see in Algorithm
-:ref:`alg-BucketSum` line 9. After giving an overview of *BucketSum*, there
-follows a more detailed description of the algorithm, which starts with a formal
-analysis of the bucket partitioning.
+the input addends like in *HybridSum* [Hayes2009]_. The splitting is performed
+dynamically by *FastTwoSum* as one can see in Algorithm :ref:`alg-BucketSum`
+line 9. After giving an overview of *BucketSum*, there follows a more detailed
+description of the algorithm, which starts with a formal analysis of the bucket
+partitioning.
 
-\begin{figure} \centering
-\begin{bytefield}[bitwidth=1.8em,endianness=big,rightcurly=.]{18}
-  \bitbox{1}{$1$}
-& \bitbox{1}{$1$} & \bitbox{4}{:math:`part_{1}`} & \bitbox{2}{*guard*}
-& \bitbox{4}{:math:`part_{2}`} & \bitbox{4}{:math:`part_{3}`} \end{bytefield}
-\caption{Generic significant partition.} \label{fig:Generic significant
-partition} \end{figure}
+.. figure:: _static/generic_significant_partition.*
+   :alt: Generic significant partition.
+   :name: fig-Generic significant partition
+   :align: center
+
+   Generic significant partition.
 
 .. _Axiom 1:
 
@@ -399,17 +397,20 @@ Proof.
    :ref:`fig-Error bucket shift 2`. In Algorithm :ref:`alg-BucketSum`, line 10,
    this action is performed. ∎
 
-\begin{figure} \centering
-\includegraphics[width=\textwidth]{pic/accumulation_partition_shift_1.pdf}
-\caption[BucketSum - error storage to next bucket.]{Four possible examples
-for partitioning and storing the error of the smallest allowed addend into
-the neighbouring bucket.} \label{fig:Error bucket shift 1} \end{figure}
+.. figure:: _static/accumulation_partition_shift_1.*
+   :alt: BucketSum - error storage to next bucket.
+   :name: fig-Error bucket shift 1
+   :align: center
 
-\begin{figure} \centering
-\includegraphics[width=\textwidth]{pic/accumulation_partition.pdf}
-\caption[BucketSum - error storage.]{Error storage scenario of the smallest
-allowed addend into bucket *i - 2*.} \label{fig:Error bucket shift 2}
-\end{figure}
+   Four possible examples for partitioning and storing the error of the smallest
+   allowed addend into the neighbouring bucket.
+
+.. figure:: _static/accumulation_partition.*
+   :alt: BucketSum - error storage.
+   :name: fig-Error bucket shift 2
+   :align: center
+
+   Error storage scenario of the smallest allowed addend into bucket *i - 2*.
 
 .. _Assumption 2:
 
@@ -506,7 +507,7 @@ Proof.
       guard + part_{3} = \dfrac{p - 1}{3}
 
    By respecting *guard* and :math:`part_{3}` to be integers, an upward rounding
-   of this optimum, to fulfil the optimization constraints, yields the first
+   of this optimum, to fulfill the optimization constraints, yields the first
    equation of `Theorem 2`_. With the first equation of
    `Theorem 2`_ and equation :eq:`eq-alignment inequation`
    an upper bound for :math:`part_{2}` is found:
@@ -573,37 +574,13 @@ All possible relations between *shift* and *p* can be seen in Figure
 following, the number of addends, that can be accumulated without loosing any
 significant bits, are described by `Theorem 4`_.
 
-\begin{figure}
-\begin{bytefield}[bitwidth=0.8em,endianness=little,rightcurly=.]{29}
-\begin{rightwordgroup}{$p = 3 \cdot shift - 1$}
-  \bitbox{1}{$1$}
-& \bitbox{1}{$1$} & \bitbox{7}{$shift-3$} & \bitbox{2}{$2$} &
-\bitbox{10}{*shift*} & \bitbox{8}{$shift-2$} \end{rightwordgroup} \\
-\end{bytefield}
+.. figure:: _static/accumulation_partition.*
+   :alt: All possible ternary partitions for a given *shift*.
+   :name: fig-All possible ternary partitions for a given *shift*.
+   :align: center
 
-\begin{bytefield}[bitwidth=0.8em,endianness=little,rightcurly=.]{30}
-\begin{rightwordgroup}{$p = 3 \cdot shift$}
-  \bitbox{1}{$1$}
-& \bitbox{1}{$1$} & \bitbox{8}{$shift-2$} & \bitbox{1}{$1$} &
-\bitbox{10}{*shift*} & \bitbox{9}{$shift-1$} \end{rightwordgroup} \\
-\end{bytefield}
-
-\begin{bytefield}[bitwidth=0.8em,endianness=little,rightcurly=.]{31}
-\begin{rightwordgroup}{$p = 3 \cdot shift + 1$}
-  \bitbox{1}{$1$}
-& \bitbox{1}{$1$} & \bitbox{9}{$shift-1$} & \bitbox{10}{*shift*} &
-\bitbox{10}{*shift*} \end{rightwordgroup} \\ \end{bytefield}
-
-\begin{bytefield}[bitwidth=0.8em,endianness=little,rightcurly=.]{32}
-\begin{rightwordgroup}{$p = 3 \cdot shift + 2$}
-  \bitbox{1}{$1$}
-& \bitbox{1}{$1$} & \bitbox{9}{$shift-1$} & \bitbox{10}{*shift*} &
-\bitbox{11}{$shift + 1$} \end{rightwordgroup} \\ \end{bytefield}
-
-\caption[All possible ternary partitions for a given *shift*.]{All possible
-ternary partitions for a given *shift*. Note that $p = 3 \cdot shift - 2$
-violates the upper bound of *shift* in `Theorem 2`_.}
-\label{fig:All possible ternary partitions for a given *shift*.} \end{figure}
+   All possible ternary partitions for a given *shift*. Note that :math:`p = 3
+   \cdot shift - 2` violates the upper bound of *shift* in `Theorem 2`_.
 
 .. _Theorem 4:
 
@@ -620,9 +597,8 @@ Proof.
    \Leftrightarrow 2^{part_{1}} N`. ∎
 
 Finally a complexity analysis of *BucketSum* (Algorithm :ref:`alg-BucketSum`)
-similar to that one in \cite[Chapter 2.1]{Zhu:2010:A9O:1824801.1824815} should
-be done. For each of the *N* addends the following operations have to be
-performed:
+similar to that one in [Hayes2010]_ should be done. For each of the *N* addends
+the following operations have to be performed:
 
 * Bucket determination (line 8): 3 :term:`FLOP` s [#f2]_
 * *FastTwoSum* (line 9): 3 :term:`FLOP` s
@@ -662,14 +638,12 @@ The :term:`binary64` type has the precision *p = 53*. Therefore we get
 partitioning by `Theorem 2`_ and `Theorem 3`_, as shown in Figure
 :ref:`fig-Significant partition for binary64`.
 
-\begin{figure}[H]
-\begin{bytefield}[bitwidth=0.5em,endianness=little,rightcurly=.]{53}
-\bitheader{0,1,2,17,19,37,52} \\ \begin{rightwordgroup}{$53 = 3 \cdot 18 - 1$}
-  \bitbox{1}{$1$}
-& \bitbox{1}{$1$} & \bitbox{15}{$15$} & \bitbox{2}{$2$} & \bitbox{18}{$18$} &
-\bitbox{16}{$16$} \end{rightwordgroup} \\ \end{bytefield} \caption[Significant
-partition for binary64.]{Significant partition for :term:`binary64`.}
-\label{fig:Significant partition for binary64} \end{figure}
+.. figure:: _static/significant_partition_binary64.*
+   :alt: Significant partition for binary64.
+   :name: fig-Significant partition for binary64
+   :align: center
+
+   Significant partition for :term:`binary64`.
 
 Also one can no longer assume an infinite exponent range. `Assumption 1`_ has to
 be replaced by a concrete bucket alignment. This alignment consists of three
@@ -679,41 +653,45 @@ normal bucket *a[0]* has the significance of the biased exponent *0*. This
 anchor has been chosen, because no :term:`binary64`, even the subnormal numbers
 with a biased exponent of *0*, can be accumulated into a bucket smaller than
 *a[0]*. All in all to cover the full exponent range of :term:`binary64`, one
-needs $\left\lceil 2^{11} / shift \right\rceil = 114$ buckets. Beginning with
-the first normal bucket *a[0]*, each following bucket is aligned with a unit in
-the first place of *shift* bigger than its predecessor. The maximal multiple of
-*shift* that fits in this pattern is $\left\lfloor 2^{11} / shift \right\rfloor
-= 113$. Therefore we define the topmost bucket to be an overflow bucket. This
-bucket is responsible for values with a unit in the first place of greater than
-$2^{1011}$, but these values are ignored in this work. With an unreasonable
-effort, this overflow situation can be handled differently. The second overflow
-bucket needs an exceptional alignment as well. Its :math:`part_{1}` is smaller
-due to upper limit of the :term:`binary64` exponent range $2^{1023}$. Because of
-the alignment of *a[0]* and `Assumption 2`_, two additional error buckets for
-the underflow range are required. For the underflow range $[2^{-1023}, \;
-2^{-1074}]$, bucket $a[-1]$ follows the alignment scheme of the normal buckets
-and bucket $a[-2]$ is responsible for the remaining bit positions. The exponent
-range partition is illustrated in Figure :ref:`fig-Exponent range partition`.
-Graphical visualizations of the bucket alignment in the under- and overflow
-range are given in the Figures :ref:`fig-accumulation underflow` and
-:ref:`fig-accumulation overflow`.
+needs :math:`\left\lceil 2^{11} / shift \right\rceil = 114` buckets. Beginning
+with the first normal bucket *a[0]*, each following bucket is aligned with a
+unit in the first place of *shift* bigger than its predecessor. The maximal
+multiple of *shift* that fits in this pattern is :math:`\left\lfloor 2^{11} /
+shift \right\rfloor = 113`. Therefore we define the topmost bucket to be an
+overflow bucket. This bucket is responsible for values with a unit in the first
+place of greater than :math:`2^{1011}`, but these values are ignored in this
+work. With an unreasonable effort, this overflow situation can be handled
+differently. The second overflow bucket needs an exceptional alignment as well.
+Its :math:`part_{1}` is smaller due to upper limit of the :term:`binary64`
+exponent range $2^{1023}$. Because of the alignment of *a[0]* and `Assumption
+2`_, two additional error buckets for the underflow range are required. For the
+underflow range :math:`[2^{-1023}, \; 2^{-1074}]`, bucket *a[-1]* follows the
+alignment scheme of the normal buckets and bucket *a[-2]* is responsible for the
+remaining bit positions. The exponent range partition is illustrated in Equation
+:ref:`eq-Exponent range partition`. Graphical visualizations of the bucket
+alignment in the under- and overflow range are given in the Figures
+:ref:`fig-accumulation underflow` and :ref:`fig-accumulation overflow`.
 
-\begin{figure} \begin{align*}
-  &\overbrace{
-    \underbrace{2^{1010} \cdots 2^{993}}_{a[112]}
-  }^{\mathclap{\text{overflow bucket}}} \underbrace{2^{992} \cdots
-  2^{975}}_{a[111]} \underbrace{2^{974} \cdots 2^{957}}_{a[110]} \cdots \\
-  &\qquad\cdots \underbrace{2^{-1006} \cdots 2^{-1023}}_{a[0]} \overbrace{
-    \underbrace{2^{-1024} \cdots 2^{-1041}}_{a[-1]} \underbrace{2^{-1042}
-    \cdots 2^{-1074}}_{a[-2]}
-  }^{\mathclap{\text{underflow buckets}}}
-\end{align*} \caption{Exponent range partition.} \label{fig:Exponent range
-partition} \end{figure}
+.. math::
+   :label: eq-Exponent range partition
 
-Finally the accumulation reserve for the normal and underflow buckets
-is according to `Theorem 4`_ smaller than
-$2^{15}$. For the first overflow bucket one obtains analogue to `Theorem 4`_
-an accumulation reserve of less than $2^{11}$.
+   \begin{aligned}
+   &\overbrace{\underbrace{2^{1010} \cdots 2^{993}}_{a[112]}}^{
+    \mathclap{\text{overflow bucket}}}
+    \underbrace{2^{992} \cdots 2^{975}}_{a[111]}
+    \underbrace{2^{974} \cdots 2^{957}}_{a[110]} \cdots \\
+   &\qquad\cdots \underbrace{2^{-1006} \cdots 2^{-1023}}_{a[0]}
+    \overbrace{\underbrace{2^{-1024} \cdots 2^{-1041}}_{a[-1]}
+    \underbrace{2^{-1042}
+    \cdots 2^{-1074}}_{a[-2]}}^{\mathclap{\text{underflow buckets}}}
+   \end{aligned}
+
+   Exponent range partition.
+
+Finally the accumulation reserve for the normal and underflow buckets is
+according to `Theorem 4`_ smaller than :math:`2^{15}`. For the first overflow
+bucket one obtains analogue to `Theorem 4`_ an accumulation reserve of less than
+:math:`2^{11}`.
 
 
 
@@ -730,9 +708,9 @@ to obtain an elegant side effect for the tidy up and sum up steps. In Algorithm
 :ref:`alg-BucketSum` all buckets are initialized with an appropriate mask. This
 mask has to be considered in the tidy up process (lines 13 and 19-20) and it has
 to be removed before the final sum up (lines 23-25). If two different bucket
-arrays $a1$ and $a2$ are used, $a1$ uses the masks as described in Algorithm
-:ref:`alg-BucketSum` and $a2$ uses the negative masks. In that way the exact sum
-of the unmasked values of the buckets *i* can be computed by $a1[i] + a2[i]$.
+arrays *a1* and *a2* are used, *a1* uses the masks as described in Algorithm
+:ref:`alg-BucketSum` and *a2* uses the negative masks. In that way the exact sum
+of the unmasked values of the buckets *i* can be computed by *a1[i] + a2[i]*.
 This way the number of floating-point operations dealing with masking and
 unmaking are reduced a lot. Additionally the partial loop unrolling increases
 the instruction-level parallelism and finally increases the tidy up values by a
@@ -741,29 +719,35 @@ are required.
 
 Another considered optimization is the avoidance of the division by the *shift*
 in Algorithm :ref:`alg-BucketSum` line 8. An integer division is an expensive
-operation compared to multiplication and bit shifting. In \cite[Pages
-51-52]{Fog2013} one can find latencies for several instructions. For the AMD
-"Piledriver" the latency for a signed or unsigned division ((I)DIV \cite[Pages
-159-160 and 163-164]{AMD2013b}) ranges from 12-71 clock cycles. Compared to this
-the sum of the latencies of a left or right bit shift (SHL/SHR \cite[Pages 292
-and 295-296]{AMD2013b}) with one clock cycle and a signed or unsigned
-multiplication ((I)MUL \cite[Pages 165-166 and 235-236]{AMD2013b}) with 4-6
-clock cycles is by far smaller. As this division by the *shift* has to be done
-for each addends exponent, a small speed up could be archived by replacing the
-division by a multiplication followed by a bit shift, as shown in Listing
+operation compared to multiplication and bit shifting. In [Fog2014]_ (p. 54-58)
+one can find latencies for several instructions. For the AMD "Piledriver" the
+latency for a signed or unsigned division ((I)DIV [AMD2013b]_ (Chapter 3))
+ranges from 12-71 clock cycles. Compared to this the sum of the latencies of a
+left or right bit shift (SHL/SHR [AMD2013b]_ (Chapter 3)) with one clock cycle
+and a signed or unsigned multiplication ((I)MUL [AMD2013b]_ (Chapter 3)) with
+4-6 clock cycles is by far smaller. As this division by the *shift* has to be
+done for each addends exponent, a small speed up could be archived by replacing
+the division by a multiplication followed by a bit shift, as shown in Listing
 :ref:`lst-Division by 18 replacement`. The idea behind the values of Listing
 :ref:`lst-Division by 18 replacement` is an integer optimization problem.
 
-\begin{equation} \label{eqn:Division by 18 optimization problem}
-\begin{aligned} \text{minimize}   \qquad & x + y \\ \text{subject to} \qquad
-& \dfrac{exp}{18} = \dfrac{x \cdot exp}{2^{y}}, \; \forall exp \in [0, \;
-2047)\\ & x > 0 \\ & y > 0.  \end{aligned} \end{equation}
+.. math::
+   :label: eq-Division by 18 optimization problem
 
-For normal and subnormal :term:`binary64` the exponents range from *0* to 2046
-and the desired division should be a cheap bit shift, thus a power of two.
-Therefore the task is to find for the smallest possible power of two $y$ some
-minimal $x = \left\lceil \dfrac{2^{y}}{18} \right\rceil$. This *x* was found
-with the program of Listing :ref:`lst-Division by 18 optimization problem`.
+   \begin{aligned}
+   \text{minimize}   \qquad & x + y \\
+   \text{subject to} \qquad & \dfrac{exp}{18} = \dfrac{x \cdot exp}{2^{y}},\;
+   \forall exp \in [0, \; 2047) \\
+   & x > 0 \\
+   & y > 0.
+   \end{aligned}
+
+For normal and subnormal :term:`binary64` the exponents range from 0 to 2046 and
+the desired division should be a cheap bit shift, thus a power of two.
+Therefore the task is to find for the smallest possible power of two *y* some
+minimal :math:`x = \left\lceil \dfrac{2^{y}}{18} \right\rceil`. This *x* was
+found with the program of Listing :ref:`lst-Division by 18 optimization
+problem`.
 
 .. code-block:: c
    :caption: Division by 18 replacement
@@ -831,15 +815,15 @@ C-XSC toolbox will be used as reference values for the five types of test data.
      - :math:`N-1`
      - 1
      - :math:`\mathcal{O}(1)`
-   * - *SumK* (K = 2, \cite{Lathus2012})
+   * - *SumK* (K = 2, [Lathus2012]_)
      - :math:`(3K-2)N`
      - 2-3
      - :math:`\mathcal{O}(N)`
-   * - *iFastSum* (\cite{Zhu:2010:A9O:1824801.1824815})
+   * - *iFastSum* ([Hayes2010]_)
      - :math:`>6N`
      - 3-5 :math:`^{\dagger}`
      - :math:`\mathcal{O}(N)`
-   * - *OnlineExactSum* (\cite{Zhu:2010:A9O:1824801.1824815})
+   * - *OnlineExactSum* ([Hayes2010]_)
      - :math:`5N`
      - 4-6* :math:`^{\ddagger}`
      - :math:`\mathcal{O}(1)`
@@ -852,39 +836,38 @@ An asterisk "*" in :ref:`tbl-Comparison of summation algorithms` indicates the
 use of instruction-level parallelism, a dagger ":math:`^{\dagger}`", that the
 results for Data 3 were omitted, and a double dagger ":math:`^{\ddagger}`", that
 this applies only for large dimensions.  The test data for the summation
-benchmark program is chosen similar to \cite[Chapter
-3]{Zhu:2010:A9O:1824801.1824815}. **Data 1** are *N* random, positive
-floating-point numbers, all with an exponent of :math:`2^{0}`. Thus Data 1 is
-pretty well-conditioned :math:`R_{\text{summation}} = 1`. **Data 2** is
-ill-conditioned. The exponents are distributed uniformly and randomly between
+benchmark program is chosen similar to [Hayes2010]_. **Data 1** are *N* random,
+positive floating-point numbers, all with an exponent of :math:`2^{0}`. Thus
+Data 1 is pretty well-conditioned :math:`R_{\text{summation}} = 1`. **Data 2**
+is ill-conditioned. The exponents are distributed uniformly and randomly between
 :math:`2^{-900}` and :math:`2^{900}`, the signs are assigned randomly and the
 significant is filled randomly as well. **Data 3** is similar to Data 2, but its
-sum is exactly zero. **Data 4** is Anderson's ill-conditioned data \cite[Chapter
-4]{Anderson1999}. And finally **Data 5** is designed to especially stress the
+sum is exactly zero. **Data 4** is Anderson's ill-conditioned data
+[Anderson1999]_. And finally **Data 5** is designed to especially stress the
 accumulation reserve of *BucketSum*. A visualization of that test case is given
 in Figure :ref:`fig-accumulation stress test round nearest`.
 
-For time measurement the *clock()* function \cite[Chapter
-7.27.2.1]{ISO/IEC2011a} \cite[Chapter 20.11.8]{ISO/IEC2011} is used. To keep the
-time measurement as accurate as possible, all memory operations like array
-creation and destruction should be kept outside of time measuring code blocks.
-On the other hand, if the size of the input data *N* was chosen too small, the
-measured time is too inaccurate. This requires a certain number of repeated
-operations *R*, to obtain detectable results. But some algorithms like *SumK*
-and *iFastSum* operate inline on the input data. Thus providing a single copy of
-the data will not suffice to get identical initial conditions for each
-repetition. To meet all these constraints, a large copy of $R \cdot (N + 1)$
-elements for summation is created, each of the repeated *N* elements with a
-leading zero, as *iFastSum* and *BucketSum* imitate Fortran indexing. The
-systems available main memory creates another constraint on the maximum test
-case size $R \cdot (N + 1)$. This product should not exceed the test systems 8
-GB of main memory, otherwise the timings will become inaccurate due to swapping
-to hard disk. This means for *R = 1* repetitions the theoretical maximum test
-case size can be
+For time measurement the *clock()* function [ISO-IEC-9899-2011]_ (Chapter
+7.27.2.1) [ISO-IEC-14882-2011]_ (Chapter 20.11.8) is used. To keep the time
+measurement as accurate as possible, all memory operations like array creation
+and destruction should be kept outside of time measuring code blocks.  On the
+other hand, if the size of the input data *N* was chosen too small, the measured
+time is too inaccurate. This requires a certain number of repeated operations
+*R*, to obtain detectable results. But some algorithms like *SumK* and
+*iFastSum* operate inline on the input data. Thus providing a single copy of the
+data will not suffice to get identical initial conditions for each repetition.
+To meet all these constraints, a large copy of :math:`R \cdot (N + 1)` elements
+for summation is created, each of the repeated *N* elements with a leading zero,
+as *iFastSum* and *BucketSum* imitate Fortran indexing. The systems available
+main memory creates another constraint on the maximum test case size :math:`R
+\cdot (N + 1)`. This product should not exceed the test systems 8 GB of main
+memory, otherwise the timings will become inaccurate due to swapping to hard
+disk. This means for *R = 1* repetitions the theoretical maximum test case size
+can be
 
 .. math::
-   N = \dfrac{8 \cdot 1024^{3}\; Byte}{8\; Byte} - 1 \;=\;
-   1.073.741.823 \;\geq\; 10^{9}\; Elements.
+   N = \dfrac{8 \cdot 1024^{3}\; Byte}{8\; Byte} - 1 = 1.073.741.823
+   \geq 10^{9}\; Elements.
 
 Experimental test runs revealed, that about :math:`10^{7}` elements are
 necessary in order to obtain detectable results. Therefore the following data
@@ -971,19 +954,19 @@ The benchmarks (Figures :ref:`fig-Benchmark results summation of middle
 dimension input data` and :ref:`fig-Benchmark results summation of large
 dimension input data`) show, that *BucketSum* performs best for all given kinds
 of data. *BucketSum* is by factor 2-3 slower than the Ordinary Recursive
-Summation and is slightly faster than *SumK* (with $K = 2$). For middle and
+Summation and is slightly faster than *SumK* (with *K = 2*). For middle and
 large data lengths *BucketSum* scales linear in contrast to *OnlineExactSum*,
-which starts to scale linear at a data length of about $6 \cdot 10^{3}$
+which starts to scale linear at a data length of about :math:`6 \cdot 10^{3}`
 elements. Another interesting observation is, that *OnlineExactSum* is dependent
-on the condition of the input data $R_{\text{summation}}$ for small data
+on the condition of the input data :math:`R_{\text{summation}}` for small data
 lengths. For *iFastSum*, *OnlineExactSum* and *BucketSum* the results have been
-compared to that one of the C-XSC toolbox using an *assert()* \cite[Chapter
-19.3]{ISO/IEC2011} statement, thus any inaccurate result would have interrupted
-the benchmark. As no interruptions occurred, all three algorithms are assumed to
-deliver correctly rounded sums. The most important properties of the algorithms
-under test are summarized in Table :ref:`tbl-Comparison of summation
-algorithms`, which is a modified extension of \cite[Table
-V]{Zhu:2010:A9O:1824801.1824815}.
+compared to that one of the C-XSC toolbox using an *assert()*
+[ISO-IEC-14882-2011]_ (Chapter 19.3) statement, thus any inaccurate result would
+have interrupted the benchmark. As no interruptions occurred, all three
+algorithms are assumed to deliver correctly rounded sums. The most important
+properties of the algorithms under test are summarized in Table
+:ref:`tbl-Comparison of summation algorithms`, which is a modified extension of
+[Hayes2010]_.
 
 .. rubric:: Footnotes
 
