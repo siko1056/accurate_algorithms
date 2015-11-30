@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<svg width="725" height="275" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" id="svg_4" y="47" x="38" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">79</text>
+  <text id="svg_5" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="45" x="263" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">63</text>
+  <text id="svg_6" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="47" x="669" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">0</text>
+  <text id="svg_9" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="25" x="35" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">Sign</text>
+  <g id="svg_11">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="50" width="25" height="25" id="svg_1" stroke="#000000"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="50" width="200" height="25" id="svg_2" stroke="#000000"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="50" width="425" height="25" id="svg_3" stroke="#000000"/>
+   <text id="svg_7" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="68" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">Exponent</text>
+   <text id="svg_8" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="68" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">Significant / MMX0</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="68" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_10">R0</text>
+  </g>
+  <g id="svg_12">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="75" width="25" height="25" stroke="#000000" id="svg_13"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="75" width="200" height="25" stroke="#000000" id="svg_14"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="75" width="425" height="25" stroke="#000000" id="svg_15"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="93" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_16">Exponent</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="93" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_17">Significant / MMX1</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="93" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_18">R1</text>
+  </g>
+  <g id="svg_19">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="100" width="25" height="25" stroke="#000000" id="svg_20"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="100" width="200" height="25" stroke="#000000" id="svg_21"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="100" width="425" height="25" stroke="#000000" id="svg_22"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="118" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_23">Exponent</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="118" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_24">Significant / MMX2</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="118" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_25">R2</text>
+  </g>
+  <g id="svg_26">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="125" width="25" height="25" stroke="#000000" id="svg_27"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="125" width="200" height="25" stroke="#000000" id="svg_28"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="125" width="425" height="25" stroke="#000000" id="svg_29"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="143" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_30">Exponent</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="143" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_31">Significant / MMX3</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="143" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_32">R3</text>
+  </g>
+  <g id="svg_33">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="150" width="25" height="25" stroke="#000000" id="svg_34"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="150" width="200" height="25" stroke="#000000" id="svg_35"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="150" width="425" height="25" stroke="#000000" id="svg_36"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="168" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_37">Exponent</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="168" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_38">Significant / MMX4</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="168" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_39">R4</text>
+  </g>
+  <g id="svg_40">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="175" width="25" height="25" stroke="#000000" id="svg_41"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="175" width="200" height="25" stroke="#000000" id="svg_42"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="175" width="425" height="25" stroke="#000000" id="svg_43"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="193" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_44">Exponent</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="193" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_45">Significant / MMX5</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="193" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_46">R5</text>
+  </g>
+  <g id="svg_47">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="200" width="25" height="25" stroke="#000000" id="svg_48"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="200" width="200" height="25" stroke="#000000" id="svg_49"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="200" width="425" height="25" stroke="#000000" id="svg_50"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="218" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_51">Exponent</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="218" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_52">Significant / MMX6</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="218" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_53">R6</text>
+  </g>
+  <g id="svg_54">
+   <rect fill="#ffffff" stroke-width="2" x="25" y="225" width="25" height="25" stroke="#000000" id="svg_55"/>
+   <rect fill="#ffffff" stroke-width="2" x="50" y="225" width="200" height="25" stroke="#000000" id="svg_56"/>
+   <rect fill="#cccccc" stroke-width="2" x="250" y="225" width="425" height="25" stroke="#000000" id="svg_57"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="243" x="136" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_58">Exponent</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="243" x="454" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_59">Significant / MMX7</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="20px" y="243" x="693" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_60">R7</text>
+  </g>
+ </g>
+</svg>

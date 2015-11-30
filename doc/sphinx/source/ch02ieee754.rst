@@ -14,12 +14,12 @@ floating-point arithmetic, is given in [Brisebarre2010]_ (Chapters 2 and 3).
 Notation and encoding
 =====================
 
-In this project only the binary, 64 bit floating-point format is regarded. In
+In this project only the binary 64 bit floating-point format is regarded. In
 the floating-point standard it is called :term:`binary64`. The C and C++ data
-type *double* realize this format as well, see Annex F in [ISO-IEC-9899-2011]_
-and Chapter 18.3 in [ISO-IEC-14882-2011]_. The set of normal and subnormal
+type *double* realize this format as well, see [ISO-IEC-9899-2011]_ (Annex F)
+and [ISO-IEC-14882-2011]_ (Chapter 18.3). The set of normal and subnormal
 :term:`binary64` floating-point numbers :math:`x \in \mathbb{F}` is defined by
-the precision :math:`p = 53` and the exponent constant :math:`E = 1023`.
+the precision *p = 53* and the exponent constant *E = 1023*.
 
 .. math::
    x =
@@ -32,18 +32,18 @@ the precision :math:`p = 53` and the exponent constant :math:`E = 1023`.
 
 Next to normal and subnormal numbers, a :term:`binary64` can take the special
 values :math:`\pm \infty` and *NaN* [Brisebarre2010]_ (Chapter 3). For this
-Master's Thesis the :term:`binary64` encoding plays an important role, e.g. for
-the exponent extraction (see Chapter :ref:`sec-Fast exponent extraction`). This
+project the :term:`binary64` encoding plays an important role, e.g. for the
+exponent extraction (see Chapter :ref:`sec-Fast exponent extraction`). This
 encoding is shown in Figure :ref:`fig-Encoding of a binary64 floating-point
 number` with the most significant sign bit, an eleven bit exponent and a 52 bit
 significant [IEEE-754-2008]_ (Chapter 3.4).
 
-.. figure:: _static/binary64.*
+.. figure:: _static/ch02-binary64.*
    :alt: Encoding of a binary64 floating-point number.
    :align: center
    :name: fig-Encoding of a binary64 floating-point number
 
-   Encoding of a :term:`binary64` floating-point number
+   Encoding of a :term:`binary64` floating-point number.
 
 To get an idea of the range of :term:`binary64` numbers, some useful macro
 constants of the *double* data type from the C standard library header
@@ -96,7 +96,7 @@ remaining bits results in the sticky bit. The sticky bit is set, if any bit of
 
 In order to be representable as :term:`binary64`, *y* has to be rounded to a
 floating-point number :math:`x \in \mathbb{F}`. This rounding operation will be
-defined by the function :math:`x = fl(y)`. The result of *fl()* is dependent on
+defined by the function *x = fl(y)*. The result of *fl()* is dependent on
 the active rounding mode. The :term:`IEEE 754-2008` specifies the following
 rounding modes:
 
@@ -134,9 +134,9 @@ rounded according to a rounding mode, if the rules above are applied.  This
 definition is intangible for mathematical proofs on error estimations of
 floating-point operations. To overcome this problem, several measures have been
 introduced. The first one is the relative unit roundoff ε, especially for
-:term:`binary64` holds :math:`\epsilon = DBL\_EPSILON`. With this measure a
-correctly rounded result :math:`x = fl(y)` according to [Brisebarre2010]_
-(Chapter 2.2.3) can be defined as:
+:term:`binary64` holds *ε = DBL_EPSILON*. With this measure a correctly rounded
+result *x = fl(y)* according to [Brisebarre2010]_ (Chapter 2.2.3) can be defined
+as:
 
 .. math::
    \dfrac{\vert y - x \vert}{\vert y \vert}
@@ -148,9 +148,8 @@ correctly rounded result :math:`x = fl(y)` according to [Brisebarre2010]_
 This more intuitive measure for the term correctly rounded means, that for any
 rounding mode the relative error should be smaller than the representable bits
 of the rounded floating-point result *x*. Additionally for roundToNearest the
-relative error can be maximal exactly the tie value :math:`0.5 \cdot \epsilon`
-(the round bit of *y*), or is "one bit smaller" than for any other rounding
-mode.
+relative error can be maximal exactly the tie value *0.5 · ε* (the round bit of
+*y*), or is "one bit smaller" than for any other rounding mode.
 
 A measure for the absolute error is the *unit in the last place*
 :math:`ulp(y),\; y \in \mathbb{R}`, which is defined for any real number in
@@ -160,19 +159,18 @@ A measure for the absolute error is the *unit in the last place*
    ulp(y) = max(2^{e-p+1}, DBL\_TRUE\_MIN)
    \qquad y \in \left[2^{e}, \; 2^{e + 1}\right)
 
-ε and :math:`ulp(y)` are related via :math:`ulp(1) = \epsilon`, see
-[Brisebarre2010]_ (Chapter 2.6.4). Roughly spoken, :math:`ulp(x)`, :math:`x \in
-\mathbb{F}` is the significance of bit :math:`m_{p-1}` of *x* or reciting the
-original definition:
+ε and *ulp(y)* are related via *ulp(1) = ε*, see [Brisebarre2010]_ (Chapter
+2.6.4). Roughly spoken, *ulp(x)*, :math:`x \in \mathbb{F}` is the significance
+of bit :math:`m_{p-1}` of *x* or reciting the original definition:
 
-   ":math:`ulp(x)` is the gap between the two floating-point numbers
-   nearest to *x*, even if *x* is one of them."
+   "*ulp(x)* is the gap between the two floating-point numbers nearest to *x*,
+   even if *x* is one of them."
 
    -- [Brisebarre2010]_ (p. 32)
 
 When there is a *unit in the last place*, it seems likely that there exists a
-*unit in the first place* as well. And indeed, Rump, Ogita, and Oishi introduce
-:math:`ufp(y)` in [Ogita2008]_:
+*unit in the first place* as well. Rump, Ogita, and Oishi introduce *ufp(y)*
+in [Ogita2008]_:
 
 .. math::
   ufp(y) =
@@ -182,11 +180,10 @@ When there is a *unit in the last place*, it seems likely that there exists a
   0, & \text{for } y = 0.
   \end{cases}
 
-Both ε and :math:`ulp(y)` are often found in literature about error analysis of
+Both ε and *ufp(y)* are often found in literature about error analysis of
 floating-point algorithms in various forms and have some weaknesses in their
 informative value. Discussions about the limitations can be found in
-[Brisebarre2010]_ (Chapter 2) and with emphasis on :math:`ufp(y)` in
-[Rump2012]_.
+[Brisebarre2010]_ (Chapter 2) and with emphasis on *ufp(y)* in [Rump2012]_.
 
 
 

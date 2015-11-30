@@ -92,9 +92,9 @@ a\vert \geq \vert b\vert` and thus unavoidably an expensive branch. So one has
 to check for the individual use case whether three additional :term:`FLOP` s
 exceed the cost of a branch, see [Ogita2005]_ and [Brisebarre2010]_ (Chapter
 4.3) . There exists another algorithm by Priest, which will not be taken into
-account in this thesis. It requires :math:`\vert a\vert \geq \vert b\vert`, thus
-a branch, and more :term:`FLOP` s than the two already presented algorithms
-[Brisebarre2010]_ (Chapter 4.3.3).
+account. It requires :math:`\vert a\vert \geq \vert b\vert`, thus a branch, and
+more :term:`FLOP` s than the two already presented algorithms [Brisebarre2010]_
+(Chapter 4.3.3).
 
 .. code-block:: octave
    :caption: Error-free transformation FastTwoSum
@@ -266,9 +266,6 @@ value for the resulting sum has been introduced.
    :name: alg-Modified Kahans cascaded and compensated summation
    :linenos:
 
-   % s: initial sum value (input) / computed sum (output)
-   % x: array of sorted addends
-   % N: number of addends in x
    function [s] = ModifiedKahanSum (s, x, N)
      err = 0;
      for i = 1:N
@@ -283,11 +280,8 @@ value for the resulting sum has been introduced.
    :name: alg-BucketSum
    :linenos:
 
-   % x: array of addends
-   % N: number of addends in x
-   % s: correctly rounded sum $\sum_{i = 1}^{N} x_{i}$
    function [s] = BucketSum (x, N)
-     % Create appropiate masks
+     % Create appropriate masks
      mask = CreateMasks (M);
      mask(1) = 0;
      mask(M) = NaN;
@@ -663,27 +657,26 @@ place of greater than :math:`2^{1011}`, but these values are ignored in this
 work. With an unreasonable effort, this overflow situation can be handled
 differently. The second overflow bucket needs an exceptional alignment as well.
 Its :math:`part_{1}` is smaller due to upper limit of the :term:`binary64`
-exponent range $2^{1023}$. Because of the alignment of *a[0]* and `Assumption
-2`_, two additional error buckets for the underflow range are required. For the
-underflow range :math:`[2^{-1023}, \; 2^{-1074}]`, bucket *a[-1]* follows the
-alignment scheme of the normal buckets and bucket *a[-2]* is responsible for the
-remaining bit positions. The exponent range partition is illustrated in Equation
-:ref:`eq-Exponent range partition`. Graphical visualizations of the bucket
-alignment in the under- and overflow range are given in the Figures
-:ref:`fig-accumulation underflow` and :ref:`fig-accumulation overflow`.
+exponent range :math:`2^{1023}`. Because of the alignment of *a[0]* and
+`Assumption 2`_, two additional error buckets for the underflow range are
+required. For the underflow range :math:`[2^{-1023}, \; 2^{-1074}]`, bucket
+*a[-1]* follows the alignment scheme of the normal buckets and bucket *a[-2]* is
+responsible for the remaining bit positions. The exponent range partition is
+illustrated in Equation :eq:`eq-Exponent range partition`. Graphical
+visualizations of the bucket alignment in the under- and overflow range are
+given in the Figures :ref:`fig-accumulation underflow` and
+:ref:`fig-accumulation overflow`.
 
 .. math::
    :label: eq-Exponent range partition
 
    \begin{aligned}
-   &\overbrace{\underbrace{2^{1010} \cdots 2^{993}}_{a[112]}}^{
-    \mathclap{\text{overflow bucket}}}
+   &\overbrace{\underbrace{2^{1010} \cdots 2^{993}}_{a[112]}}^{\text{overflow bucket}}
     \underbrace{2^{992} \cdots 2^{975}}_{a[111]}
     \underbrace{2^{974} \cdots 2^{957}}_{a[110]} \cdots \\
    &\qquad\cdots \underbrace{2^{-1006} \cdots 2^{-1023}}_{a[0]}
     \overbrace{\underbrace{2^{-1024} \cdots 2^{-1041}}_{a[-1]}
-    \underbrace{2^{-1042}
-    \cdots 2^{-1074}}_{a[-2]}}^{\mathclap{\text{underflow buckets}}}
+    \underbrace{2^{-1042} \cdots 2^{-1074}}_{a[-2]}}^{\text{underflow buckets}}
    \end{aligned}
 
    Exponent range partition.
@@ -698,7 +691,7 @@ bucket one obtains analogue to `Theorem 4`_ an accumulation reserve of less than
 Implementation
 --------------
 
-One essential element of this Master's Thesis is the efficient implementation of
+One essential element of this project is the efficient implementation of
 *BucketSum*. This chapter deals with all implementation details and changes to
 the pseudo-code from Algorithm :ref:`alg-BucketSum`. Some potential improvements
 to a floating-point using software are described in Chapters :ref:`sec-Software
@@ -950,23 +943,21 @@ lengths and repetitions are defined:
 
    Stress test.
 
-The benchmarks (Figures :ref:`fig-Benchmark results summation of middle
-dimension input data` and :ref:`fig-Benchmark results summation of large
-dimension input data`) show, that *BucketSum* performs best for all given kinds
-of data. *BucketSum* is by factor 2-3 slower than the Ordinary Recursive
-Summation and is slightly faster than *SumK* (with *K = 2*). For middle and
-large data lengths *BucketSum* scales linear in contrast to *OnlineExactSum*,
-which starts to scale linear at a data length of about :math:`6 \cdot 10^{3}`
-elements. Another interesting observation is, that *OnlineExactSum* is dependent
-on the condition of the input data :math:`R_{\text{summation}}` for small data
-lengths. For *iFastSum*, *OnlineExactSum* and *BucketSum* the results have been
-compared to that one of the C-XSC toolbox using an *assert()*
-[ISO-IEC-14882-2011]_ (Chapter 19.3) statement, thus any inaccurate result would
-have interrupted the benchmark. As no interruptions occurred, all three
-algorithms are assumed to deliver correctly rounded sums. The most important
-properties of the algorithms under test are summarized in Table
-:ref:`tbl-Comparison of summation algorithms`, which is a modified extension of
-[Hayes2010]_.
+The benchmarks (see Figures above) show, that *BucketSum* performs best for all
+given kinds of data. *BucketSum* is by factor 2-3 slower than the Ordinary
+Recursive Summation and is slightly faster than *SumK* (with *K = 2*). For
+middle and large data lengths *BucketSum* scales linear in contrast to
+*OnlineExactSum*, which starts to scale linear at a data length of about
+:math:`6 \cdot 10^{3}` elements. Another interesting observation is, that
+*OnlineExactSum* is dependent on the condition of the input data
+:math:`R_{\text{summation}}` for small data lengths. For *iFastSum*,
+*OnlineExactSum* and *BucketSum* the results have been compared to that one of
+the C-XSC toolbox using an *assert()* [ISO-IEC-14882-2011]_ (Chapter 19.3)
+statement, thus any inaccurate result would have interrupted the benchmark. As
+no interruptions occurred, all three algorithms are assumed to deliver correctly
+rounded sums. The most important properties of the algorithms under test are
+summarized in Table :ref:`tbl-Comparison of summation algorithms`, which is a
+modified extension of [Hayes2010]_.
 
 .. rubric:: Footnotes
 

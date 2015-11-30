@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<svg width="700" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect stroke="#000000" id="svg_1" height="25" width="25" y="50" x="25" stroke-width="2" fill="#ffffff"/>
+  <rect stroke="#000000" id="svg_2" height="25" width="200" y="50" x="50" stroke-width="2" fill="#ffffff"/>
+  <rect stroke="#000000" id="svg_3" height="25" width="425" y="50" x="250" stroke-width="2" fill="#ffffff"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="38" y="47" id="svg_4" font-size="20px" font-family="Serif" text-anchor="middle" xml:space="preserve">63</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="239" y="46" font-size="20px" font-family="Serif" text-anchor="middle" xml:space="preserve" id="svg_5">52</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="669" y="47" font-size="20px" font-family="Serif" text-anchor="middle" xml:space="preserve" id="svg_6">0</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="136" y="68" font-size="20px" font-family="Serif" text-anchor="middle" xml:space="preserve" id="svg_7">Exponent</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="454" y="68" font-size="20px" font-family="Serif" text-anchor="middle" xml:space="preserve" id="svg_8">Significant</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="35" y="25" font-size="20px" font-family="Serif" text-anchor="middle" xml:space="preserve" id="svg_9">Sign</text>
+ </g>
+</svg>

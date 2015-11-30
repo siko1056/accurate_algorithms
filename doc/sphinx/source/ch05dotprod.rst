@@ -4,22 +4,22 @@
 Accurate inner product
 **********************
 
-This chapter is the combination of all previous chapters. With the :term:`FMA`
-instruction and an efficient and fast summation algorithm, one is able to create
-efficient inner product algorithms as well. After a short overview about
-previous approaches, three algorithms using :term:`FMA` will be introduced.
+With the :term:`FMA` instruction and an efficient and fast summation algorithm,
+one is able to create efficient inner product algorithms as well. After a short
+overview about previous approaches, three algorithms using :term:`FMA` will be
+introduced.
 
 
 
 Previous work
 =============
 
-Like the Recursive summation (Algorithm :ref:`alg-RecursiveSummation`), there
+Like the recursive summation (Algorithm :ref:`alg-RecursiveSummation`), there
 also exists a simple straight forward implementation of the inner product,
-namely Algorithm :ref:`alg-RecursiveDotProduct` (see \cite[Algorithm
-6.2]{Muller2010}). A condition number for the inner product (Equation
-:eq:`eq-Dot product condition number`) is defined in \cite[Chapter
-6.1.2]{Muller2010} as well:
+namely Algorithm :ref:`alg-RecursiveDotProduct`, see [Brisebarre2010]_
+(Algorithm 6.2). A condition number for the inner product (Equation :eq:`eq-Dot
+product condition number`) is defined in [Brisebarre2010]_ (Chapter 6.1.2) as
+well:
 
 .. math::
   :label: eq-Dot product condition number
@@ -34,16 +34,15 @@ namely Algorithm :ref:`alg-RecursiveDotProduct` (see \cite[Algorithm
    :name: alg-RecursiveDotProduct
    :linenos:
 
-   function RecursiveDotProduct(a, b, N)
-     s = fl(a_{1} \cdot b_{1})
-     for(i = 2 to N)
-       s = fl(s + fl(a_{i} \cdot b_{i}))
-     end for
-     return s
-   end function
+   function [s] = RecursiveDotProduct (a, b, N)
+     s = fl(a(1) * b(1));
+     for i = 2:N
+       s = fl(s + fl(a(i) * b(i)));
+     end
+   end
 
 Similar to the definition of the error-free transformation for the sum, there
-also exists a definition for the product in \cite[Chapter 3]{Rump2005}:
+also exists a definition for the product in [Ogita2005]_:
 
 .. math::
    :label: eq-Error-free transformation product
@@ -66,57 +65,55 @@ bit precisions of a :term:`binary64`.
   :label: eq-Error-free transformation product example
 
    \begin{aligned}
-   a &= \left(2^{53} - 2^{0}\right) \cdot 2^{exp_{a}} \nonumber \\ b &=
-   \left(2^{53} - 2^{0}\right) \cdot 2^{exp_{b}} \nonumber \\ c &= a \cdot b =
-   \left(2^{106} - 2^{54} + 2^{0}\right)
-     \cdot 2^{exp_{a} + exp_{b}} \\
+   a &= \left(2^{53} - 2^{0}\right) \cdot 2^{exp_{a}} \nonumber \\
+   b &= \left(2^{53} - 2^{0}\right) \cdot 2^{exp_{b}} \nonumber \\
+   c &= a \cdot b = \left(2^{106} - 2^{54} + 2^{0}\right)
+        \cdot 2^{exp_{a} + exp_{b}} \\
    x &= fl(c) = \left(2^{106} - 2^{54}\right)
-     \cdot 2^{exp_{a} + exp_{b}} \nonumber \\
+        \cdot 2^{exp_{a} + exp_{b}} \nonumber \\
    y &= a \cdot b - fl(c) = \left(2^{0}\right)
-     \cdot 2^{exp_{a} + exp_{b}} \nonumber
+        \cdot 2^{exp_{a} + exp_{b}} \nonumber
    \end{aligned}
 
 Without the :term:`FMA` instruction, there exists the algorithm *TwoProduct*,
 that is able to perform this error-free product transformation by using 17
-:term:`FLOP` s (see \cite[Chapter 3]{Rump2005} for details). Having a system
-with a hardware implemented :term:`FMA` instruction, the whole effort can be
-reduced to *TwoProductFMA* (Algorithm :ref:`alg-TwoProductFMA`). This algorithm
-is also described in \cite[Algorithm 3.5]{Rump2005} and requires only two
-:term:`FLOP` s.
+:term:`FLOP` s, see [Ogita2005]_. Having a system with a hardware implemented
+:term:`FMA` instruction, the whole effort can be reduced to *TwoProductFMA*
+(Algorithm :ref:`alg-TwoProductFMA`). This algorithm is also described in
+[Ogita2005]_ and requires only two :term:`FLOP` s.
 
 .. code-block:: octave
    :caption: Error-free transformation TwoProductFMA
    :name: alg-TwoProductFMA
    :linenos:
 
-   function TwoProductFMA(a, b)
-     x = fl(a \cdot b)
-     y = FMA(a, b, -x)
-     return (x, y)
-   end function
+   function [x, y] = TwoProductFMA (a, b)
+     x = fl(a * b);
+     y = FMA(a, b, -x);
+   end
 
 For the inner product the idea of error-free transformation can also be extended
 from two to *N* operands with *Dot2* (Algorithm :ref:`alg-Dot2`). *Dot2*
 computes :math:`\sum_{i = 1}^{N} x_{i} \cdot y_{i}` as if twice the working
-precision was used \cite[Chapter 5]{Rump2005}. In that paper the idea has been
-extended to algorithm *DotK*, which can evaluate the inner product, as if
-computed with K-fold working precision. A slightly modified version of *Dot2*
-will be presented in the next chapter.
+precision was used [Ogita2005]_. In that paper the idea has been extended to
+algorithm *DotK*, which can evaluate the inner product, as if computed with
+K-fold working precision. A slightly modified version of *Dot2* will be
+presented in the next chapter.
 
 .. code-block:: octave
    :caption: Inner product in twice the working precision Dot2
    :name: alg-Dot2
    :linenos:
 
-   function Dot2(x, y, N)
-     [p, s] = TwoProduct(x_{1}, y_{1})
-     for(i=2 to N)
-       [h, r] = TwoProduct(x_{i}, y_{i})
-       [p, q] = TwoSum(p, h)
-       s = fl(s + fl(q + r))
-     end for
-     return fl(p + s)
-   end function
+   function [p] = Dot2 (x, y, N)
+     [p, s] = TwoProduct (x(1), y(1));
+     for i = 2:N
+       [h, r] = TwoProduct (x(i), y(i));
+       [p, q] = TwoSum (p, h);
+       s = fl(s + fl(q + r));
+     end
+     p = fl(p + s);
+   end
 
 
 
@@ -127,7 +124,7 @@ The first algorithm that is tested in the following benchmark (Chapter
 :ref:`sec-Benchmark DotProd`) is *Dot2* (Algorithm :ref:`alg-Dot2`) with all
 occurrences of *TwoProduct* replaced by *TwoProductFMA*. This algorithm will be
 called *Dot2FMA* in the following. This modification is already described in
-\cite[Chapter 5]{Rump2005}.
+[Ogita2005]_.
 
 Another trivial idea is not to modify the existing summation algorithms of
 Chapter :ref:`ch-summation`. Instead a preprocessing of the input vectors is
@@ -144,86 +141,85 @@ rounding, that dependent on the resulting vectors can return a not correctly
 rounded result. A solution to this problem would be an interface method, that
 allows to accumulate a vector of a certain size, and a second one to make a
 final sum up to a correctly rounded sum. Such an interface is for example
-available in the implementation of *OnlineExactSum*
-\cite{Zhu:2010:A9O:1824801.1824815}.
+available in the implementation of *OnlineExactSum* [Hayes2010]_.
 
 .. code-block:: octave
-   :caption: FMAWrapperDotProd
+   :caption: FMAWrapperDotProd transforms a dot product into sum and finally
+             calls BucketSum.
    :name: alg-FMAWrapperDotProd
    :linenos:
 
-   \Require *N*, number of addends
-   \Require *x*, first array of length *N*
-   \Require *y*, second array of length *N*
-   \Ensure $s$, computed inner product $\sum_{i = 1}^{N} x_{i} \cdot y_{i}$
-   function FMAWrapperDotProd(x, y, N)
-     for(i = 1 to N) % In-place array preprocessing
-       t = fl(x_{i} \cdot y_{i}) % Destructive TwoProductFMA
-       y_{i} = FMA(x_{i}, y_{i}, -t)
-       x_{i} = t
-     end for
-     s = BucketSum(x, N) % Any summation algorithm possible
-     s = fl(s + BucketSum(y, N))
-     return s
-   end function
+   function [s] = FMAWrapperDotProd(x, y, N)
+     for i = 1:N                    % In-place array preprocessing
+       t = fl(x(i) * y(i));         % Destructive TwoProductFMA
+       y(i) = FMA(x(i), y(i), -t);
+       x(i) = t;
+     end
+     s = BucketSum (x, N);          % Any summation algorithm possible
+     s = fl(s + BucketSum (y, N));
+   end
 
 Finally a modified version of *BucketSum* (Algorithm :ref:`alg-BucketSum`) is
 presented, namely *BucketDotProd* (Algorithm :ref:`alg-BucketDotProd`).
 *BucketDotProd* is identical to *BucketSum*, except for the lines 8-13, where
-*TwoProductFMA* comes into play. Assume the product to accumulate is $a \cdot
-b$, therefore $x = fl(a \cdot b)$ and $y = FMA(a, b, -a \cdot b)$. It was
-already shown, that if *x* has to be added to bucket *i* and its error to bucket
-*i - 2*, no significant bit is lost (`Theorem 1`_). In order to avoid the
-expensive three :term:`FLOP` s for the exponent extraction of *y*, one can make
-use of the *shift = 18* property for the :term:`binary64` realization. In that
-case *y* will always fall in the exponent range of bucket *i - 3*. According to
-`Theorem 1`_ the error of *y* has to be added to bucket *i - 5*.
+*TwoProductFMA* comes into play. Assume the product to accumulate is :math:`a
+\cdot b`, therefore :math:`x = fl(a \cdot b)` and :math:`y = FMA(a, b, -a \cdot
+b)`. It was already shown, that if *x* has to be added to bucket *i* and its
+error to bucket *i - 2*, no significant bit is lost (:ref:`Theorem 1 <Theorem 1>`). In order
+to avoid the expensive three :term:`FLOP` s for the exponent extraction of *y*,
+one can make use of the *shift = 18* property for the :term:`binary64`
+realization.  In that case *y* will always fall in the exponent range of bucket
+*i - 3*.  According to :ref:`Theorem 1 <Theorem 1>` the error of *y* has to be added to
+bucket *i - 5*.
 
-\begin{figure} \centering
-\includegraphics[width=\textwidth]{pic/accumulation_bucket_dot_prod}
-\caption{Visualization of BucketDotProds accumulation.} \label{fig:accumulation
-bucket dot prod} \end{figure}
+.. figure:: _static/accumulation_bucket_dot_prod.*
+   :alt: Visualization of BucketDotProds accumulation.
+   :name: fig-accumulation bucket dot prod
+   :align: center
+
+   Visualization of BucketDotProds accumulation.
 
 .. code-block:: octave
    :caption: BucketDotProd
    :name: alg-BucketDotProd
    :linenos:
 
-   \Require *N*, number of addends
-   \Require *x*, first array of length *N*
-   \Require *y*, second array of length *N*
-   \Ensure $s$, correctly rounded inner product $\sum_{i = 1}^{N} x_{i} * y_{i}$
-   function BucketDotProd(x, y, N)
-     % $a_{1}$ and $a_{2}$ are underflow and
-     % $a_{M - 1}$ and $a_{M}$ are overflow buckets
-     \State create arrays of $M$ buckets *a* % $a_{2 \dots M - 2}$ cover $SHIFT$ exponents
-     \State create arrays of $M$ bucket masks $mask$ % $mask_{1}$ is set to $0$, $mask_{M}$ to NaN
-     \State initialize $a_{i}$ with $mask_{i}$
-     sum = 0
-     for(i = 1 to N)
-       (v, w) = TwoProductFMA(x_{i}, y_{i})
-       pos = \lceil exp(v) / SHIFT \rceil + 2 % $exp()$ extracts biased exponent
-       (a_{pos}, e_{1}) = FastTwoSum(a_{pos}, v)
-       (a_{pos - 3}, e_{2}) = FastTwoSum(a_{pos - 3}, w)
-       a_{pos - 2} = fl(a_{pos - 2} + e_{1})
-       a_{pos - 5} = fl(a_{pos - 5} + e_{2})
-       if((i \mod C1) == 0)                  % $C1 =$ capacity of normal buckets
-         for(j = 1 to (M - 2))                          % Tidy up normal buckets
-           r = fl(fl(mask_{j + 1} + fl(a_{j} - mask_{j})) - mask_{j + 1})
-           a_{j + 1} = fl(a_{j + 1} + r)
-           a_{j} = fl(a_{j} - r)
-         end for
-       end if
-       if((i \mod C2) == 0)                % $C1 =$ capacity of overflow buckets
-         sum = fl(sum + fl(a_{M - 1} - mask_{M - 1}))         % Tidy up overflow
-         a_{M - 1} = mask_{M - 1}
-       end if
-     end for
-     for(i = 1 to (M - 1)) % remove masks
-       a_{i} = a_{i} - mask_{i}
-     end for
-     return ModifiedKahanSum(sum, a_{M-1 \text{ downto } 1}, M-1)
-   end function
+   function [s] = BucketDotProd (x, y, N)
+     % Create appropriate masks
+     mask = CreateMasks (M);
+     mask(1) = 0;
+     mask(M) = NaN;
+
+     % Create array of M buckets, initialized with their mask.
+     %   a(1:2) are underflow and a((M - 1):M) are overflow buckets
+     %   a(3:(M - 2)) cover SHIFT exponents
+     a = mask;
+
+     sum = 0;
+     for i = 1:N
+       [v, w] = TwoProductFMA (x(i), y(i));
+       pos = ceil (exp(v) / SHIFT) + 2;        % exp(): extracts biased exponent
+       [a(pos), e(1)] = FastTwoSum (a(pos), v);
+       [a(pos - 3}, e(2)) = FastTwoSum (a(pos - 3}, w);
+       a(pos - 2) = fl(a(pos - 2) + e(1));
+       a(pos - 5) = fl(a(pos - 5) + e(2));
+       if(mod (i, C1) == 0)                     % C1: capacity of normal buckets
+         for j = 1:(M - 2)                              % Tidy up normal buckets
+           r = fl(fl(mask(j + 1) + fl(a(j) - mask(j))) - mask(j + 1));
+           a(j + 1) = fl(a(j + 1) + r);
+           a(j) = fl(a(j) - r);
+         end
+       end
+       if (mod (i, C2) == 0)                  % C2: capacity of overflow buckets
+         sum = fl(sum + fl(a(M - 1) - mask(M - 1)));          % Tidy up overflow
+         a(M - 1) = mask(M - 1);
+       end
+     end
+     for i = 1:(M - 1)        % remove masks
+       a(i) = a(i) - mask(i);
+     end
+     s = ModifiedKahanSum (sum, a_{M-1 \text{ downto } 1}, M-1);
+   end
 
 This chapter shows, that with moderate effort nearly each summation algorithm
 can be modified to handle the task of inner product computation as well. In the
@@ -239,10 +235,10 @@ Benchmark
 
 For the benchmark of inner product the five algorithms of Table
 :ref:`tbl-Comparison of inner product algorithms` are compared. All algorithms
-were implemented as part of this Master's Thesis. Only for the implementation of
-*Dot2* and *Dot2FMA* some sub-functions of \cite{Lathus2012} were used. Like for
-the summation benchmark the C-XSC toolbox has been used to verify the
-correctness of the computed inner products.
+were implemented as part of this work. Only for the implementation of *Dot2* and
+*Dot2FMA* some sub-functions of [Lathus2012]_ were used. Like for the summation
+benchmark the C-XSC toolbox has been used to verify the correctness of the
+computed inner products.
 
 .. list-table:: Comparison of inner product algorithms for input data length *N*
    :header-rows: 1

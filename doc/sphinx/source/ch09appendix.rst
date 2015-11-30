@@ -60,7 +60,7 @@ Hardware
    * - Microprocessor
      - 2.3 GHz AMD Quad-Core A10-4600M APU with Radeon HD 7660G/7670M Dual Graphics
    * - Microarchitecture
-     - Piledriver \cite{Youngbauer2012}
+     - Piledriver [Youngbauer2012]_
    * - Chipset
      - AMD A70M FCH
    * - Microprocessor Cache
@@ -332,21 +332,31 @@ scenario for *roundTowardNegative* and its worst case addend :math:`2^{2} +
 twice of that one from *roundToNearest*. The necessity of the *guard* bits
 becomes clear as well.
 
-\begin{figure} \includegraphics[width=\textwidth]{pic/accumulation_underflow}
-\caption{Visualization of the bucket alignment in the underflow range.}
-\label{fig:accumulation underflow} \end{figure}
+.. figure:: _static/accumulation_underflow.*
+   :alt: Visualization of the bucket alignment in the underflow range.
+   :name: fig-accumulation underflow
+   :align: center
 
-\begin{figure} \includegraphics[width=\textwidth]{pic/accumulation_overflow}
-\caption{Visualization of the bucket alignment in the overflow range.}
-\label{fig:accumulation overflow} \end{figure}
+   Visualization of the bucket alignment in the underflow range.
 
-\begin{figure}
-\includegraphics[width=\textwidth]{pic/accumulation_stress_test_round_nearest}
-\caption{Visualization of the stress test case for *roundToNearest*.}
-\label{fig:accumulation stress test round nearest} \end{figure}
+.. figure:: _static/accumulation_overflow.*
+   :alt: Visualization of the bucket alignment in the overflow range.
+   :name: fig-accumulation overflow
+   :align: center
 
-\begin{figure}
-\includegraphics[width=\textwidth]{pic/accumulation_stress_test_round_downwards}
-\caption{Visualization of the stress test case for *roundTowardNegative*.}
-\label{fig:accumulation stress test round downwards} \end{figure}
+   Visualization of the bucket alignment in the overflow range.
+
+.. figure:: _static/accumulation_stress_test_round_nearest.*
+   :alt: Visualization of the stress test case for roundToNearest.
+   :name: fig-accumulation stress test round nearest
+   :align: center
+
+   Visualization of the stress test case for *roundToNearest*.
+
+.. figure:: _static/accumulation_stress_test_round_downwards.*
+   :alt: Visualization of the stress test case for roundTowardNegative.
+   :name: fig-accumulation stress test round downwards
+   :align: center
+
+   Visualization of the stress test case for *roundTowardNegative*.
 

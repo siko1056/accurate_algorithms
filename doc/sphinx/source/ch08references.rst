@@ -31,3 +31,4 @@ References
 .. [Rump2009] S. M. Rump. **Ultimately Fast Accurate Summation**. DOI: `10.1137/080738490 <http://dx.doi.org/10.1137/080738490>`_.
 .. [Rump2012] S. M. Rump. **Error estimation of floating-point summation and dot product**. DOI: `10.1007/s10543-011-0342-4 <http://dx.doi.org/10.1007/s10543-011-0342-4>`_.
 .. [Stallman2015] R. M. Stallman. **Using the GNU Compiler Collection**. https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gcc.pdf.
+.. [Youngbauer2012] S. Youngbauer. **Second-Generation AMD A-Series APUs Enable Best-in-Class PC Mobility, Entertainment, and Gaming Experience in Single Chip**. http://www.amd.com/en-us/press-releases/Pages/second-generation-amd-a-series-2012may15.aspx.

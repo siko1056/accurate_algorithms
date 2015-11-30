@@ -41,10 +41,10 @@ expensive, if the operation has to be emulated by other basic floating-point
 operations. As a representative example, *TwoProduct* could be reduced from 17
 :term:`FLOP` s to two. This makes error-free product transformation more
 interesting for other applications. The realization of a more ambitious demand
-by Kulish \cite[Chapter 8]{Kulisch2013}, to even fully implement the accurate
-sum and inner product by hardware, would be interesting for the future as well.
-But as long as these operations are not standardized, no hardware vendor might
-be interested in such a realization.
+by Kulish [Kulisch2013]_ (Chapter 8), to even fully implement the accurate sum
+and inner product by hardware, would be interesting for the future as well.  But
+as long as these operations are not standardized, no hardware vendor might be
+interested in such a realization.
 
 The application field of the presented algorithms is quite large, as summation
 and inner products are very elementary operations. Possible future works might

@@ -22,9 +22,8 @@ Specification
 This section deals with how :term:`FMA` is specified by :term:`IEEE 754-2008`.
 Quoting the standard:
 
-   "The operation *fusedMultiplyAdd(x, y, z)* computes
-   :math:`(x \cdot y ) + z` as if with unbounded range and precision,
-   rounding only once to the destination format."
+   "The operation *fusedMultiplyAdd(x, y, z)* computes *(x · y ) + z* as if with
+   unbounded range and precision, rounding only once to the destination format."
 
    -- [IEEE-754-2008]_ (Definition 2.1.28)
 
@@ -33,20 +32,19 @@ Quoting the standard:
    :name: alg-FMA
    :linenos:
 
-   function FMA(a,b,c)
-     return fl((a · b) + c)
-   end function
+   function [s] = FMA (a, b, c)
+     s = fl((a * b) + c);
+   end
 
 The property, that the result of the :term:`FMA` operation is only rounded once
 in the end, is very important. First of all, one is able to write algorithms
 that can rely on this property of no intermediate rounding like it would happen
-if :math:`(x \cdot y ) + z` is evaluated by two floating-point operations. But
-on the other hand the programmer has to take care for compiler optimizations.
-For example an expression like :math:`a \cdot b + x \cdot y` might be contracted
-to *FMA(a, b, x · y)* and any assumptions about intermediate rounding are
-falsified [Brisebarre2010]_ (Chapter 7.2). More on the compiler settings for
-correct usage for :term:`FMA` follows in the Section :ref:`sec-Software and
-compiler support`.
+if *(x · y ) + z* is evaluated by two floating-point operations. But on the
+other hand the programmer has to take care for compiler optimizations.  For
+example an expression like *a · b + x · y* might be contracted to *FMA(a, b, x ·
+y)* and any assumptions about intermediate rounding are falsified
+[Brisebarre2010]_ (Chapter 7.2). More on the compiler settings for correct usage
+for :term:`FMA` follows in the Section :ref:`sec-Software and compiler support`.
 
 
 
@@ -55,17 +53,17 @@ compiler support`.
 Hardware realization
 ====================
 
-At the time of writing this thesis the :term:`FMA` operation is not a fully
-adopted by all common used computer architectures. Thus, it is important to
-check if the used system uses a hardware implemented :term:`FMA` operation in
-order to avoid slow software emulations as the :term:`C11` standard remarks
-[ISO-IEC-9899-2011]_ (Chapter 7.12).
+At the time of writing the :term:`FMA` operation is not a fully adopted by all
+common used computer architectures. Thus, it is important to check if the used
+system uses a hardware implemented :term:`FMA` operation in order to avoid slow
+software emulations as the :term:`C11` standard remarks [ISO-IEC-9899-2011]_
+(Chapter 7.12).
 
 Since the year 1990 the :term:`FMA` instruction has been supported by several
 processors, like the *HP/Intel Itanium*, which has been used as testing system
 by many algorithm implementors in the past [Brisebarre2010]_ (Chapter 5). For
 examples see [Ogita2005]_ and [Graillat2007]_. These processors are mainly used
-for scientific or business applications, but the focus of this thesis are more
+for scientific or business applications, but the focus of this project are more
 common used processor architectures like the Intel 64 and AMD64 [#f4]_
 architectures, which are mainly compatible with each other. AMD assures that
 "[...] floating-point operations comply with the IEEE-754 standard." [AMD2013]_
@@ -73,14 +71,14 @@ architectures, which are mainly compatible with each other. AMD assures that
 So it is assumed, that there is no violation of :term:`IEEE 754-2008` on
 hardware level.
 
-.. figure:: _static/ch3-MMX-registers.*
+.. figure:: _static/ch03-MMX-registers.*
    :alt: x87 FPU and mapped MMX registers.
    :align: center
    :name: fig-x87 FPU and mapped MMX registers
 
    x87 FPU and mapped MMX registers.
 
-.. figure:: _static/ch3-AVX-instruction.*
+.. figure:: _static/ch03-AVX-instruction.*
    :alt: AVX packed double addition.
    :align: center
    :name: fig-AVX packed double addition
@@ -94,7 +92,7 @@ required. With this knowledge one can later check on the assembly level, if the
 and AMD64 :term:`CPU` s support four floating-point instruction sets:
 
 * x87 :term:`FPU` :
-  This instruction set is designed for scalar :term:`IEEE-754-1985`
+  This instruction set is designed for scalar :term:`IEEE 754-1985`
   floating-point operations on eight separate 80 bit :term:`FPU` data registers.
   These registers are used as a stack, to avoid long opcodes. The mnemonics are
   prefixed by an "F" (float), for example *FADD ST(0),ST(i)* is such an
@@ -255,9 +253,7 @@ Appendix :ref:`sec-FMA test cases`. This test case considers any rounding mode.
 An excerpt of the implementation of the first FMA test case for :math:`exp_{a} =
 exp_{b} = 0` is given in Listing :ref:`lst-Excerpts of the FMA test case 1
 implementation`. These test case programs could verify, that only the hardware
-:term:`FMA` instruction results in the "result with FMA" from Equation
-:eq:`eq-Mathematical description of FMA test case 1` and Equation
-:eq:`eq-Mathematical description of FMA test case 2`.
+:term:`FMA` instruction delivers the desired results.
 
 A very short excerpt of the compiled program from Listing :ref:`lst-Excerpts of
 the FMA test case 1 implementation` for *roundTowardNegative* is given in
