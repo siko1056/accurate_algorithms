@@ -156,7 +156,7 @@ and AMD64 :term:`CPU` s support four floating-point instruction sets:
   *ymm1 = (ymm2 × ymm3) + ymm4*. [Intel2015]_ (Chapter 14) and [AMD2013c]_
   (Chapter 1).
 
-.. figure:: _static/ch3-SSE-registers.*
+.. figure:: _static/ch03-SSE-registers.*
    :alt: SSE registers.
    :align: center
    :name: fig-SSE registers

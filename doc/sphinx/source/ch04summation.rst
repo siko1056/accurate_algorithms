@@ -344,7 +344,7 @@ line 9. After giving an overview of *BucketSum*, there follows a more detailed
 description of the algorithm, which starts with a formal analysis of the bucket
 partitioning.
 
-.. figure:: _static/generic_significant_partition.*
+.. figure:: _static/ch04-generic-significant-partition.*
    :alt: Generic significant partition.
    :name: fig-Generic significant partition
    :align: center
@@ -391,7 +391,7 @@ Proof.
    :ref:`fig-Error bucket shift 2`. In Algorithm :ref:`alg-BucketSum`, line 10,
    this action is performed. ∎
 
-.. figure:: _static/accumulation_partition_shift_1.*
+.. figure:: _static/ch04-accumulation-partition-shift1.*
    :alt: BucketSum - error storage to next bucket.
    :name: fig-Error bucket shift 1
    :align: center
@@ -399,7 +399,7 @@ Proof.
    Four possible examples for partitioning and storing the error of the smallest
    allowed addend into the neighbouring bucket.
 
-.. figure:: _static/accumulation_partition.*
+.. figure:: _static/ch04-accumulation_partition.*
    :alt: BucketSum - error storage.
    :name: fig-Error bucket shift 2
    :align: center

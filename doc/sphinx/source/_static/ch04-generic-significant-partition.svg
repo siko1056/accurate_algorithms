@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<svg width="475" height="75" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="25" width="25" y="25" x="25" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <rect height="25" width="25" y="25" x="50" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_2"/>
+  <rect height="25" width="75" y="25" x="75" stroke-width="2" fill="#ffffff" id="svg_3" stroke="#000000"/>
+  <rect stroke="#000000" height="25" width="60" y="25" x="150" stroke-width="2" fill="#ffffff" id="svg_4"/>
+  <rect stroke="#000000" height="25" width="120" y="25" x="210" stroke-width="2" fill="#ffffff" id="svg_5"/>
+  <rect stroke="#000000" height="25" width="120" y="25" x="330" stroke-width="2" fill="#ffffff" id="svg_6"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="37.5" y="44" id="svg_7" font-size="20" text-anchor="middle" xml:space="preserve">1</text>
+  <text id="svg_8" fill="#000000" stroke="#000000" stroke-width="0" x="62.5" y="44" font-size="20" text-anchor="middle" xml:space="preserve">1</text>
+  <text id="svg_9" fill="#000000" stroke="#000000" stroke-width="0" x="110.5" y="44" font-size="20" text-anchor="middle" xml:space="preserve">part1</text>
+  <text id="svg_10" fill="#000000" stroke="#000000" stroke-width="0" x="178.5" y="44" font-size="20" text-anchor="middle" xml:space="preserve">guard</text>
+  <text id="svg_11" fill="#000000" stroke="#000000" stroke-width="0" x="267.5" y="44" font-size="20" text-anchor="middle" xml:space="preserve">part2</text>
+  <text id="svg_12" fill="#000000" stroke="#000000" stroke-width="0" x="393.5" y="44" font-size="20" text-anchor="middle" xml:space="preserve">part3</text>
+ </g>
+</svg>
