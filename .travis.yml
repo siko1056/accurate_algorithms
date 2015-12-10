@@ -4,4 +4,4 @@ compiler:
 - clang
 install:
 - sudo apt-get install octave
-script: make
+script: octave --version
