@@ -399,7 +399,7 @@ Proof.
    Four possible examples for partitioning and storing the error of the smallest
    allowed addend into the neighbouring bucket.
 
-.. figure:: _static/ch04-accumulation_partition.*
+.. figure:: _static/ch04-accumulation-partition.*
    :alt: BucketSum - error storage.
    :name: fig-Error bucket shift 2
    :align: center

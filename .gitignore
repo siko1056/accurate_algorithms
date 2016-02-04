@@ -29,3 +29,6 @@
 
 # Exclude Doxygen output
 doc/html/
+
+# Exclude Sphinx output
+doc/sphinx/build
