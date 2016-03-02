@@ -1,74 +1,104 @@
 <?xml version="1.0"?>
-<svg width="525" height="475" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
- <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
- <g>
-  <title>Layer 1</title>
-  <rect id="svg_1" height="25" width="200" y="50" x="25" stroke-width="2" stroke="#000000" fill="#ffffff"/>
-  <rect height="25" width="200" y="50" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_2"/>
-  <rect height="25" width="200" y="75" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_3"/>
-  <rect height="25" width="200" y="75" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_4"/>
-  <rect height="25" width="200" y="100" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_5"/>
-  <rect height="25" width="200" y="100" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_6"/>
-  <rect height="25" width="200" y="125" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_7"/>
-  <rect height="25" width="200" y="125" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_8"/>
-  <rect height="25" width="200" y="150" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_9"/>
-  <rect height="25" width="200" y="150" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_10"/>
-  <rect height="25" width="200" y="175" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_11"/>
-  <rect height="25" width="200" y="175" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_12"/>
-  <rect height="25" width="200" y="200" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_13"/>
-  <rect height="25" width="200" y="200" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_14"/>
-  <rect height="25" width="200" y="225" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_15"/>
-  <rect height="25" width="200" y="225" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_16"/>
-  <rect height="25" width="200" y="250" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_17"/>
-  <rect height="25" width="200" y="250" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_18"/>
-  <rect height="25" width="200" y="275" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_19"/>
-  <rect height="25" width="200" y="275" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_20"/>
-  <rect height="25" width="200" y="300" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_21"/>
-  <rect height="25" width="200" y="300" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_22"/>
-  <rect height="25" width="200" y="325" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_23"/>
-  <rect height="25" width="200" y="325" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_24"/>
-  <rect height="25" width="200" y="350" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_25"/>
-  <rect height="25" width="200" y="350" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_26"/>
-  <rect height="25" width="200" y="375" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_27"/>
-  <rect height="25" width="200" y="375" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_28"/>
-  <rect height="25" width="200" y="400" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_29"/>
-  <rect height="25" width="200" y="400" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_30"/>
-  <rect height="25" width="200" y="425" x="25" stroke-width="2" stroke="#000000" fill="#ffffff" id="svg_31"/>
-  <rect height="25" width="200" y="425" x="225" stroke-width="2" stroke="#000000" fill="#bfbfbf" id="svg_32"/>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" id="svg_33" y="46" x="42" stroke="#000000" fill="black" stroke-width="0">255</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="46" x="211" stroke="#000000" fill="black" stroke-width="0" id="svg_34">128</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="46" x="419.5" stroke="#000000" fill="black" stroke-width="0" id="svg_35">0</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="70" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_36">XMM0</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="95" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_37">XMM1</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="120" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_38">XMM2</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="145" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_39">XMM3</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="170" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_40">XMM4</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="195" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_41">XMM5</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="220" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_42">XMM6</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="245" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_43">XMM7</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="270" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_44">XMM8</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="295" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_45">XMM9</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="320" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_46">XMM10</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="345" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_47">XMM11</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="370" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_48">XMM12</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="395" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_49">XMM13</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="420" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_50">XMM14</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="445" x="320" stroke="#000000" fill="black" stroke-width="0" id="svg_51">XMM15</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="69" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_36">YMM0</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="95" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_37">YMM1</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="120" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_38">YMM2</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="145" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_39">YMM3</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="170" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_40">YMM4</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="195" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_41">YMM5</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="220" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_42">YMM6</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="245" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_43">YMM7</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="270" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_44">YMM8</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="295" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_45">YMM9</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="320" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_46">YMM10</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="345" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_47">YMM11</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="370" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_48">YMM12</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="395" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_49">YMM13</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="420" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_50">YMM14</text>
-  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" y="445" x="460" stroke="#000000" fill="black" stroke-width="0" id="svg_51">YMM15</text>
- </g>
+<svg width="525" height="475"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">
+    <![CDATA[
+    text {
+      fill: #000000;
+      stroke: #000000;
+      stroke-width: 0;
+      font-size: 20px;
+    }
+    rect {
+      fill: #ffffff;
+      fill-opacity: 0;
+      stroke: #000000;
+      stroke-width: 2px;
+    }
+    rect.grey {
+      fill: #cccccc;
+      fill-opacity: 1.0;
+    }
+    ]]>
+    </style>
+  </defs>
+  <g transform="translate(25,50)">
+    <rect height="25" width="200" y="0" />
+    <rect height="25" width="200" y="25" />
+    <rect height="25" width="200" y="50" />
+    <rect height="25" width="200" y="75" />
+    <rect height="25" width="200" y="100" />
+    <rect height="25" width="200" y="125" />
+    <rect height="25" width="200" y="150" />
+    <rect height="25" width="200" y="175" />
+    <rect height="25" width="200" y="200" />
+    <rect height="25" width="200" y="225" />
+    <rect height="25" width="200" y="250" />
+    <rect height="25" width="200" y="275" />
+    <rect height="25" width="200" y="300" />
+    <rect height="25" width="200" y="325" />
+    <rect height="25" width="200" y="350" />
+    <rect height="25" width="200" y="375" />
+  </g>
+  <g transform="translate(225,50)">
+    <rect height="25" width="200" y="0" class="grey" />
+    <rect height="25" width="200" y="25" class="grey" />
+    <rect height="25" width="200" y="50" class="grey" />
+    <rect height="25" width="200" y="75" class="grey" />
+    <rect height="25" width="200" y="100" class="grey" />
+    <rect height="25" width="200" y="125" class="grey" />
+    <rect height="25" width="200" y="150" class="grey" />
+    <rect height="25" width="200" y="175" class="grey" />
+    <rect height="25" width="200" y="200" class="grey" />
+    <rect height="25" width="200" y="225" class="grey" />
+    <rect height="25" width="200" y="250" class="grey" />
+    <rect height="25" width="200" y="275" class="grey" />
+    <rect height="25" width="200" y="300" class="grey" />
+    <rect height="25" width="200" y="325" class="grey" />
+    <rect height="25" width="200" y="350" class="grey" />
+    <rect height="25" width="200" y="375" class="grey" />
+  </g>
+  <g transform="translate(25,46)">
+    <text x="0">255</text>
+    <text x="170">128</text>
+    <text x="390">0</text>
+  </g>
+  <g transform="translate(300,70)">
+    <text y="0">XMM0</text>
+    <text y="25">XMM1</text>
+    <text y="50">XMM2</text>
+    <text y="75">XMM3</text>
+    <text y="100">XMM4</text>
+    <text y="125">XMM5</text>
+    <text y="150">XMM6</text>
+    <text y="175">XMM7</text>
+    <text y="200">XMM8</text>
+    <text y="225">XMM9</text>
+    <text y="250">XMM10</text>
+    <text y="275">XMM11</text>
+    <text y="300">XMM12</text>
+    <text y="325">XMM13</text>
+    <text y="350">XMM14</text>
+    <text y="375">XMM15</text>
+  </g>
+  <g transform="translate(440,70)">
+    <text y="0">YMM0</text>
+    <text y="25">YMM1</text>
+    <text y="50">YMM2</text>
+    <text y="75">YMM3</text>
+    <text y="100">YMM4</text>
+    <text y="125">YMM5</text>
+    <text y="150">YMM6</text>
+    <text y="175">YMM7</text>
+    <text y="200">YMM8</text>
+    <text y="225">YMM9</text>
+    <text y="250">YMM10</text>
+    <text y="275">YMM11</text>
+    <text y="300">YMM12</text>
+    <text y="325">YMM13</text>
+    <text y="350">YMM14</text>
+    <text y="375">YMM15</text>
+  </g>
 </svg>
