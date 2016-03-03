@@ -1,55 +1,106 @@
 <?xml version="1.0"?>
-<svg width="1150" height="175" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
- <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
- <g>
-  <title>Layer 1</title>
-  <text id="svg_106" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="111" y="75" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">bucket[ i ]</text>
-  <text id="svg_107" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="111" y="101" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">bucket[i-1]</text>
-  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="111" y="129" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_1">bucket[i-2]</text>
-  <rect stroke="#000000" fill="#ffffff" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="186" y="56" width="514.500006" height="25" id="svg_29"/>
-  <rect stroke="#000000" fill="#ffaaaa" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="391" y="56" width="185" height="25" id="svg_34"/>
-  <line y2="56" x2="211" y1="81" x1="211" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#000000" fill="none" id="svg_30"/>
-  <line y2="56" x2="236" y1="81" x1="236" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#000000" fill="none" id="svg_31"/>
-  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="199" y="73.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_32">1</text>
-  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="224" y="73.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_33">1</text>
-  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="480" y="73.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_35">part2</text>
-  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="639" y="74.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_36">part3</text>
-  <text id="svg_12" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="286" y="75.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">part1</text>
-  <rect stroke="#000000" fill="#ffd4aa" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="331" y="56" width="60" height="25" id="svg_2"/>
-  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="361" y="75.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_3">guard</text>
-  <rect stroke="#000000" id="svg_6" fill="#ffffff" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="365.750023" y="81.25" width="505.249977" height="25"/>
-  <rect id="svg_7" stroke="#000000" fill="#ffaaaa" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="576" y="81.25" width="185" height="25"/>
-  <line id="svg_8" y2="81.25" x2="390.75" y1="106.25" x1="390.75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#000000" fill="none"/>
-  <line id="svg_9" y2="82" x2="414.75" y1="107" x1="414.75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#000000" fill="none"/>
-  <text id="svg_10" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="379.25" y="98.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">1</text>
-  <text id="svg_11" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="403.25" y="98.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">1</text>
-  <text id="svg_13" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="665" y="98.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">part2</text>
-  <text id="svg_14" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="814.5" y="99.75" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">part3</text>
-  <text id="svg_15" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="471" y="100.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">part1</text>
-  <rect id="svg_16" stroke="#000000" fill="#ffd4aa" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="516" y="81.25" width="60" height="25"/>
-  <text id="svg_17" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="546" y="100.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">guard</text>
-  <rect stroke="#000000" id="svg_19" fill="#ffffff" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="552.666667" y="106.25" width="503.250003" height="25"/>
-  <rect id="svg_20" stroke="#000000" fill="#ffaaaa" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="760.91667" y="106.25" width="185" height="25"/>
-  <line id="svg_21" y2="107" x2="575.91667" y1="132" x1="575.91667" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#000000" fill="none"/>
-  <line id="svg_22" y2="106.5" x2="600.41667" y1="131.5" x1="600.41667" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#000000" fill="none"/>
-  <text id="svg_23" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="565.66667" y="124" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">1</text>
-  <text id="svg_24" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="589.16667" y="123.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">1</text>
-  <text id="svg_25" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="849.91667" y="123.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">part2</text>
-  <text id="svg_26" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="1002.66667" y="124.25" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">part3</text>
-  <text id="svg_27" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="655.91667" y="125.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">part1</text>
-  <rect id="svg_28" stroke="#000000" fill="#ffd4aa" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="700.91667" y="106.25" width="60" height="25"/>
-  <text id="svg_37" fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="730.91667" y="125.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve">guard</text>
-  <g id="svg_38">
-   <rect fill="#aaffaa" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="551" y="30.5" width="504.49997" height="25" id="svg_61" stroke="#000000"/>
-   <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="576" y1="30.5" x2="576" y2="55.5" id="svg_62"/>
-   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="564" y="48.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_63">1</text>
-   <text stroke="#000000" fill="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="796" y="48.5" font-size="20" font-family="null" text-anchor="middle" xml:space="preserve" id="svg_64">addend</text>
+<svg width="1050" height="175"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">
+    <![CDATA[
+    text {
+      fill: #000000;
+      stroke: #000000;
+      stroke-width: 0;
+      font-size: 20px;
+    }
+    text.blue {
+      fill: #0000ff;
+      stroke: #0000ff;
+    }
+    rect {
+      fill: #ffffff;
+      fill-opacity: 0;
+      stroke: #000000;
+      stroke-width: 2px;
+    }
+    rect.green {
+      fill: #aaffaa;
+      fill-opacity: 1.0;
+    }
+    rect.orange {
+      fill: #ffd4aa;
+      fill-opacity: 1.0;
+    }
+    rect.red {
+      fill: #ffaaaa;
+      fill-opacity: 1.0;
+    }
+    line {
+      stroke: #000000;
+      stroke-width: 2px;
+    }
+    line.blue {
+      stroke: #0000ff;
+    }
+    ]]>
+    </style>
+  </defs>
+  <g transform="translate(25,75)">
+    <text y="0">bucket[ i ]</text>
+    <text y="25">bucket[i-1]</text>
+    <text y="50">bucket[i-2]</text>
   </g>
-  <line fill="none" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="700" y1="140" x2="1057.00001" y2="140" id="svg_39" stroke="#0000ff"/>
-  <text fill="#0000ff" stroke="#0000ff" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="880.25" y="158.25" id="svg_40" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">2 shift</text>
-  <line stroke="#0000ff" id="svg_41" fill="none" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="185" y1="140" x2="554.250019" y2="140"/>
-  <text id="svg_42" fill="#0000ff" stroke="#0000ff" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="360.75" y="156.625" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">2 shift</text>
-  <line id="svg_43" fill="none" stroke-width="2" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="699" y1="25" x2="1056.00001" y2="25" stroke="#0000ff"/>
-  <text id="svg_44" fill="#0000ff" stroke="#0000ff" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="879" y="18.25" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">max. error length</text>
- </g>
+  <g transform="translate(150,55)">
+    <g transform="translate(380,-25)">
+      <rect x="0" y="0" width="500" height="25" class="green" />
+      <line x1="25" y1="0" x2="25" y2="25" />
+      <text x="8" y="18">1</text>
+      <text x="220" y="18">addend</text>
+    </g>
+    <g>
+      <line x1="25" y1="0" x2="25" y2="25" />
+      <line x1="50" y1="0" x2="50" y2="25" />
+      <rect x="0" width="500" height="25" />
+      <rect x="155" width="60" height="25" class="orange" />
+      <rect x="215" width="190" height="25" class="red" />
+      <text x="8" y="18">1</text>
+      <text x="33" y="18">1</text>
+      <text x="83" y="18">part1</text>
+      <text x="163" y="18">guard</text>
+      <text x="283" y="18">part2</text>
+      <text x="428" y="18">part3</text>
+    </g>
+    <g transform="translate(190,25)">
+      <line x1="25" y1="0" x2="25" y2="25" />
+      <line x1="50" y1="0" x2="50" y2="25" />
+      <rect x="0" width="500" height="25" />
+      <rect x="155" width="60" height="25" class="orange" />
+      <rect x="215" width="190" height="25" class="red" />
+      <text x="8" y="18">1</text>
+      <text x="33" y="18">1</text>
+      <text x="83" y="18">part1</text>
+      <text x="163" y="18">guard</text>
+      <text x="283" y="18">part2</text>
+      <text x="428" y="18">part3</text>
+    </g>
+    <g transform="translate(380,50)">
+      <line x1="25" y1="0" x2="25" y2="25" />
+      <line x1="50" y1="0" x2="50" y2="25" />
+      <rect x="0" width="500" height="25" />
+      <rect x="155" width="60" height="25" class="orange" />
+      <rect x="215" width="190" height="25" class="red" />
+      <text x="8" y="18">1</text>
+      <text x="33" y="18">1</text>
+      <text x="83" y="18">part1</text>
+      <text x="163" y="18">guard</text>
+      <text x="283" y="18">part2</text>
+      <text x="428" y="18">part3</text>
+    </g>
+    <g>
+      <text x="150" y="100" class="blue">2 shift</text>
+      <text x="700" y="100" class="blue">2 shift</text>
+      <text x="650" y="-35" class="blue">max. error length</text>
+      <line x1="0" y1="80" x2="380" y2="80" class="blue" />
+      <line x1="535" y1="-30" x2="880" y2="-30" class="blue" />
+      <line x1="535" y1="80" x2="880" y2="80" class="blue" />
+    </g>
+  </g>
 </svg>
