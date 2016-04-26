@@ -99,7 +99,7 @@ BucketDotProd::dprod (double *x, double *y, int n)
   else if (n == 1)
     return x[0] * y[0];
 
-  // if n is odd, treat first elements seperately
+  // if n is odd, treat first elements separately
   if (n & 1)
     {
       // preparation
@@ -270,4 +270,3 @@ BucketDotProd::dprod (double *x, double *y, int n)
 
   return sum;
 }
-
