@@ -33,8 +33,9 @@ import shlex
 extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
-    'sphinx.ext.pngmath',
+    'sphinx.ext.imgmath',
     'sphinx.ext.viewcode',
+    'sphinx.ext.githubpages',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -53,7 +54,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Accurate Algorithms'
-copyright = '2015, Kai T. Ohlhus'
+copyright = '2016, Kai T. Ohlhus'
 author = 'Kai T. Ohlhus'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -80,6 +81,7 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
+# This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -114,24 +116,19 @@ todo_include_todos = True
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-html_theme_options = {
-    'github_user': 'siko1056',
-    'github_repo': 'accurate_algorithms',
-    'github_button': 'false',
-    'github_banner': 'true',
-}
+#html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
 
-# The name for this set of Sphinx documents.  If None, it defaults to
-# "<project> v<release> documentation".
-#html_title = None
+# The name for this set of Sphinx documents.
+# "<project> v<release> documentation" by default.
+#html_title = ''
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -140,8 +137,8 @@ html_theme_options = {
 # of the sidebar.
 #html_logo = None
 
-# The name of an image file (within the static path) to use as favicon of the
-# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
+# The name of an image file (relative to this directory) to use as a favicon of
+# the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #html_favicon = None
 
@@ -155,9 +152,10 @@ html_static_path = ['_static']
 # directly to the root of the documentation.
 #html_extra_path = []
 
-# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
-# using the given strftime format.
-#html_last_updated_fmt = '%b %d, %Y'
+# If not None, a 'Last updated on:' timestamp is inserted at every page
+# bottom, using the given strftime format.
+# The empty string is equivalent to '%b %d, %Y'.
+#html_last_updated_fmt = None
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
@@ -201,11 +199,12 @@ html_sidebars = {
 # Language to be used for generating the HTML full-text search index.
 # Sphinx supports the following languages:
 #   'da', 'de', 'en', 'es', 'fi', 'fr', 'h', 'it', 'ja'
-#   'nl', 'no', 'pt', 'ro', 'r', 'sv', 'tr'
+#   'nl', 'no', 'pt', 'ro', 'r', 'sv', 'tr', 'zh'
 #html_search_language = 'en'
 
 # A dictionary with options for the search language support, empty by default.
-# Now only 'ja' uses this config value
+# 'ja' uses this config value.
+# 'zh' user can custom change `jieba` dictionary path.
 #html_search_options = {'type': 'default'}
 
 # The name of a javascript file (relative to the configuration directory) that
