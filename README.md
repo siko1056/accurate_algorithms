@@ -3,6 +3,8 @@ This repository contains a collection of algorithms for the accurate computation
 
 ## Documentation
 
-Read the documentation at http://accurate-algorithms.readthedocs.org .
+Read the documentation at https://accurate-algorithms.readthedocs.org .
 
-[![Documentation Status](https://readthedocs.org/projects/accurate-algorithms/badge/?version=latest)](http://accurate-algorithms.readthedocs.org/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/accurate-algorithms/badge/?version=latest)](https://accurate-algorithms.readthedocs.org/en/latest/?badge=latest)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3765996.svg)](https://doi.org/10.5281/zenodo.3765996)
